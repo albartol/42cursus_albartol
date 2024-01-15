@@ -6,7 +6,7 @@
 /*   By: albartol <albartol@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 12:42:40 by albartol          #+#    #+#             */
-/*   Updated: 2024/01/15 14:07:48 by albartol         ###   ########.fr       */
+/*   Updated: 2024/01/15 18:39:54 by albartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ static void ft_print_message(char **str, int *fin, pid_t *old_pid)
 		*old_pid = 0;
 		*str = 0;
 	}
-	else
-		exit(EXIT_FAILURE);
 }
 
 static void	ft_get_pid_handler(int signal, siginfo_t *info, void *context)
