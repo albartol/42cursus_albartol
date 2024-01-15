@@ -6,7 +6,7 @@
 /*   By: albartol <albartol@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 12:42:40 by albartol          #+#    #+#             */
-/*   Updated: 2024/01/13 16:37:26 by albartol         ###   ########.fr       */
+/*   Updated: 2024/01/15 14:07:48 by albartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,38 +29,34 @@ static void	ft_send_signal(short fin, pid_t pid, char *str)
 	}
 }
 
-static void ft_exit_signal(pid_t pid, char *str, pid_t old_pid)
+static void ft_exit_signal(char **str, pid_t *old_pid, int *i, int *c)
 {
-	int	i;
-
-	if (str)
-		free(str);
+	if (*str)
+		free(*str);
+	*str = 0;
+	*i = 0;
+	*c = 0;
 	usleep(50);
-	i = kill(pid, SIGUSR2);
-	if (i == -1)
-		exit(EXIT_FAILURE);
-	i = kill(old_pid, SIGUSR2);
-	if (i == -1)
-		exit(EXIT_FAILURE);
-	exit(EXIT_SUCCESS);
+	kill(*old_pid, SIGUSR2);
+	*old_pid = 0;
 }
 
-static char	*ft_print_message(char *str, int *fin, pid_t *old_pid)
+static void ft_print_message(char **str, int *fin, pid_t *old_pid)
 {
 	int	i;
 
-	if (str)
+	if (*str)
 	{
-		i = ft_printf("%s\n", str);
-		free(str);
+		i = ft_printf("%s\n", *str);
+		free(*str);
 		if (i == -1)
 			exit(EXIT_FAILURE);
 		*fin = 0;
 		*old_pid = 0;
+		*str = 0;
 	}
 	else
 		exit(EXIT_FAILURE);
-	return (NULL);
 }
 
 static void	ft_get_pid_handler(int signal, siginfo_t *info, void *context)
@@ -76,14 +72,14 @@ static void	ft_get_pid_handler(int signal, siginfo_t *info, void *context)
 	if (!old_pid)
 		old_pid = info->si_pid;
 	else if (old_pid != info->si_pid)
-		ft_exit_signal(info->si_pid, str, old_pid);
+		ft_exit_signal(&str, &old_pid, &i, &c);
 	if (signal == SIGUSR1)
 		c |= (1 << i);
 	i++;
 	if (i >= 8)
 	{
 		if (c == 0)
-			str = ft_print_message(str, &fin, &old_pid);
+			ft_print_message(&str, &fin, &old_pid);
 		else
 			str = ft_charjoin(str, c);
 		i = 0;
