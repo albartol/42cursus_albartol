@@ -6,7 +6,7 @@
 #    By: albartol <albartol@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/12 11:42:34 by albartol          #+#    #+#              #
-#    Updated: 2024/01/16 16:42:46 by albartol         ###   ########.fr        #
+#    Updated: 2024/01/18 15:49:42 by albartol         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,12 +32,18 @@ ft_charjoin.c
 
 NAME=libft.a
 
-OBJ=$(SRC:.c=.o)
+OBJ_DIR=obj
+
+OBJ=$(addprefix $(OBJ_DIR)/,$(SRC:%.c=%.o))
 
 all: $(NAME)
+	mkdir -p $(OBJ_DIR)
 
 $(NAME): $(OBJ)
 	ar -rcs $@ $^
+
+$(OBJ_DIR)/%.o: %.c
+	$(CC) $(CFLAGS) -O3 -c $< -o $@
 
 clean:
 	rm -f $(OBJ)
