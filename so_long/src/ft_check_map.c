@@ -6,7 +6,7 @@
 /*   By: albartol <albartol@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 13:09:40 by albartol          #+#    #+#             */
-/*   Updated: 2024/01/19 17:47:18 by albartol         ###   ########.fr       */
+/*   Updated: 2024/01/19 18:03:25 by albartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,5 +136,10 @@ void	ft_check_map(char **map)
 	{
 		ft_free_array(map);
 		ft_perror("Error\nHay duplicados del personaje o no existe\n");
+	}
+	if (ft_check_content(map))
+	{
+		ft_free_array(map);
+		ft_perror("Error\nEl contenido del mapa no es valido\n");
 	}
 }

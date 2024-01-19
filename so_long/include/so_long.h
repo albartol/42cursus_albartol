@@ -6,7 +6,7 @@
 /*   By: albartol <albartol@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:53:51 by albartol          #+#    #+#             */
-/*   Updated: 2024/01/19 15:44:53 by albartol         ###   ########.fr       */
+/*   Updated: 2024/01/19 18:03:40 by albartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,14 @@
 
 # include "../lib/libft/libft.h"
 
+// ft_get_map: read map from "*.ber" file
+
 char	**ft_get_map(char *file);
+
+// ft_check_map: check if map is valid
+
 void	ft_check_map(char **map);
+int		ft_check_content(char **map);
 
 // so_long_utils: later move to libft
 
