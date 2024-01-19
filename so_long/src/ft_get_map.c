@@ -6,7 +6,7 @@
 /*   By: albartol <albartol@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:42:59 by albartol          #+#    #+#             */
-/*   Updated: 2024/01/19 14:56:10 by albartol         ###   ########.fr       */
+/*   Updated: 2024/01/19 17:20:36 by albartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ static void	ft_rm_n(char *str)
 	i = 0;
 	while (str[i] && str[i] != '\n')
 		i++;
-	str[i] = 0;
+	if (i > 0)
+		str[i] = 0;
 }
 
 static char	**ft_copy_map(t_list *lines)
@@ -72,7 +73,7 @@ static char	**ft_read_map(int fd)
 	while (1)
 	{
 		str = get_next_line(fd);
-		if (!str || !str[0])
+		if (!str)
 			break ;
 		temp = ft_lstnew(str);
 		if (!temp)

@@ -6,7 +6,7 @@
 /*   By: albartol <albartol@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 13:09:40 by albartol          #+#    #+#             */
-/*   Updated: 2024/01/19 15:50:26 by albartol         ###   ########.fr       */
+/*   Updated: 2024/01/19 17:47:18 by albartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ static int	ft_check_dup(char **map, char c, short dup)
 				dup++;
 			if (map[i][len - j] == c)
 				dup++;
-            j++;
+			j++;
 		}
-        if (dup > 1)
-            return (EXIT_FAILURE);
+		if (dup > 1)
+			return (EXIT_FAILURE);
 		i++;
 	}
-    if (dup != 1)
-        return (EXIT_FAILURE);
+	if (dup != 1)
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
@@ -48,7 +48,7 @@ static void	ft_check_collectible(char **map)
 
 	i = 1;
 	len = ft_strlen(map[i]);
-	while (map[i + 1])
+	while (map[i] && map[i + 1])
 	{
 		j = 1;
 		while (j <= len / 2)
@@ -63,7 +63,7 @@ static void	ft_check_collectible(char **map)
 				return ;
 			j++;
 		}
-		i++;
+		i += 2;
 	}
 	ft_free_array(map);
 	ft_perror("Error\nNo hay objetos en el mapa\n");
@@ -105,18 +105,20 @@ static void	ft_check_len(char **map)
 
 	i = 0;
 	len = ft_strlen(map[i]);
-	while (map[++i])
+	i++;
+	while (map[i])
 	{
-		if (len != ft_strlen(map[i]) || len < 3)
+		if (len != ft_strlen(map[i]))
 		{
 			ft_free_array(map);
-			ft_perror("Error\nEl mapa no tiene las suficientes columnas\n");
+			ft_perror("Error\nEl mapa no es cuadrilatero\n");
 		}
+		i++;
 	}
-	if (i < 3)
+	if ((i < 3 || len < 3) || (i == 3 && len < 5) || (len == 3 && i < 5))
 	{
 		ft_free_array(map);
-		ft_perror("Error\nEl mapa no tiene las suficientes lineas\n");
+		ft_perror("Error\nNo hay suficientes filas o columnas\n");
 	}
 }
 
