@@ -6,7 +6,7 @@
 /*   By: albartol <albartol@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:53:51 by albartol          #+#    #+#             */
-/*   Updated: 2024/01/18 18:43:14 by albartol         ###   ########.fr       */
+/*   Updated: 2024/01/19 15:44:53 by albartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,12 @@
 
 # include "../lib/libft/libft.h"
 
-void	ft_perror(char *str);
 char	**ft_get_map(char *file);
+void	ft_check_map(char **map);
+
+// so_long_utils: later move to libft
+
+void	ft_perror(char *str);
+void	ft_free_array(char **array);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: albartol <albartol@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:42:59 by albartol          #+#    #+#             */
-/*   Updated: 2024/01/18 18:43:00 by albartol         ###   ########.fr       */
+/*   Updated: 2024/01/19 14:56:10 by albartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,22 @@ static void	ft_check_file(char *file)
 {
 	size_t	i;
 
-	i = ft_strlen(file) - 4;
+	i = ft_strlen(file);
+	if (i <= 4)
+		ft_perror("Error en ft_check_file.\n");
+	i -= 4;
 	if (ft_strncmp(&file[i], ".ber", 4))
-		ft_perror("Archivo de mapa no valido.\n");
+		ft_perror("Error en ft_check_file.\n");
 }
 
-static void ft_rm_n(char *str)
+static void	ft_rm_n(char *str)
 {
-    int  i;
+	int	i;
 
-    i = 0;
-    while (str[i] && str[i] != '\n')
-        i++;
-    str[i] = 0;
+	i = 0;
+	while (str[i] && str[i] != '\n')
+		i++;
+	str[i] = 0;
 }
 
 static char	**ft_copy_map(t_list *lines)
@@ -38,9 +41,9 @@ static char	**ft_copy_map(t_list *lines)
 	int		i;
 	char	*str;
 
-    i = 0;
-    if (!lines)
-	    ft_perror("Error en ft_read_map.\n");
+	i = 0;
+	if (!lines)
+		ft_perror("Error en ft_read_map.\n");
 	len = ft_lstsize(lines);
 	map = (char **)ft_calloc(len + 1, sizeof(char *));
 	if (!map)
@@ -52,8 +55,8 @@ static char	**ft_copy_map(t_list *lines)
 		map[i] = ft_strdup(str);
 		if (!map[i])
 			return (NULL);
-        lines = lines->next;
-        i++;
+		lines = lines->next;
+		i++;
 	}
 	return (map);
 }
@@ -65,7 +68,7 @@ static char	**ft_read_map(int fd)
 	t_list	*temp;
 	char	**map;
 
-    lines = NULL;
+	lines = NULL;
 	while (1)
 	{
 		str = get_next_line(fd);
@@ -83,8 +86,8 @@ static char	**ft_read_map(int fd)
 	map = ft_copy_map(lines);
 	ft_lstclear(&lines, free);
 	if (!map)
-	    ft_perror("Error en ft_copy_map.\n");
-    return (map);
+		ft_perror("Error en ft_copy_map.\n");
+	return (map);
 }
 
 char	**ft_get_map(char *file)
@@ -95,8 +98,8 @@ char	**ft_get_map(char *file)
 	ft_check_file(file);
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		ft_perror("Error al abrir el archivo.\n");
+		ft_perror("Error en ft_get_map.\n");
 	map = ft_read_map(fd);
-    close(fd);
+	close(fd);
 	return (map);
 }

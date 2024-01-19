@@ -6,7 +6,7 @@
 #    By: albartol <albartol@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/12 11:42:34 by albartol          #+#    #+#              #
-#    Updated: 2024/01/18 15:49:42 by albartol         ###   ########.fr        #
+#    Updated: 2024/01/19 13:58:52 by albartol         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,14 +36,16 @@ OBJ_DIR=obj
 
 OBJ=$(addprefix $(OBJ_DIR)/,$(SRC:%.c=%.o))
 
-all: $(NAME)
-	mkdir -p $(OBJ_DIR)
+all: $(OBJ_DIR) $(NAME)
 
 $(NAME): $(OBJ)
 	ar -rcs $@ $^
 
 $(OBJ_DIR)/%.o: %.c
 	$(CC) $(CFLAGS) -O3 -c $< -o $@
+
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
 
 clean:
 	rm -f $(OBJ)
@@ -53,5 +55,5 @@ fclean:
 
 re: fclean all
 
-.PHONY: all clean fclean re $(NAME)
-.SILENT: all clean fclean re $(NAME)
+.PHONY: all clean fclean re
+.SILENT: all clean fclean re $(NAME) $(OBJ_DIR)
