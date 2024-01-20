@@ -23,11 +23,9 @@ static int	ft_check_dup(char **map, char c, short dup)
 	while (map[i + 1])
 	{
 		j = 1;
-		while (j <= len / 2)
+		while (j < len - 1)
 		{
 			if (map[i][j] == c)
-				dup++;
-			if (map[i][len - j] == c)
 				dup++;
 			j++;
 		}

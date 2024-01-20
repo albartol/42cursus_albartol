@@ -14,8 +14,12 @@
 
 void	ft_perror(char *str)
 {
+	int	i;
+
 	if (str && *str)
-		write(1, str, ft_strlen(str));
+		i = write(1, str, ft_strlen(str));
+	if (i == -1)
+		exit(EXIT_FAILURE);
 	exit(EXIT_FAILURE);
 }
 
