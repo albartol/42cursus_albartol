@@ -14,6 +14,5 @@ int	ft_isalnum(int i)
 {
 	if ((i > 64 && i < 91) || (i > 96 && i < 123) || (i > 47 && i < 58))
 		return (1);
-	else
-		return (0);
+	return (0);
 }
