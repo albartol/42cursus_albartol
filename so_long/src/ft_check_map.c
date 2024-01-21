@@ -45,19 +45,19 @@ static void	ft_check_collectible(char **map)
 	size_t	len;
 
 	i = 1;
-	len = ft_strlen(map[i]);
+	len = ft_strlen(map[i]) / 2;
 	while (map[i] && map[i + 1])
 	{
 		j = 1;
-		while (j <= len / 2)
+		while (j <= len)
 		{
 			if (map[i][j] == 'C')
 				return ;
 			if (map[i + 1][j] == 'C')
 				return ;
-			if (map[i][len - j] == 'C')
+			if (map[i][len + j] == 'C')
 				return ;
-			if (map[i + 1][len - j] == 'C')
+			if (map[i + 1][len + j] == 'C')
 				return ;
 			j++;
 		}

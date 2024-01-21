@@ -37,62 +37,6 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	return (list);
 }
 
-/* t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
-{
-	t_list	*temp;
-	t_list	*list;
-
-	if (!lst)
-		return (0);
-	temp = ft_lstnew(f(lst->content));
-	if (!temp)
-	{
-		ft_lstclear(&temp, del);
-		return (0);
-	}
-	list = temp;
-	while (lst->next)
-	{
-		lst = lst->next;
-		list->next = ft_lstnew(f(lst->content));
-		if (!list->next)
-		{
-			ft_lstclear(&temp, del);
-			return (0);
-		}
-		list = list->next;
-	}
-	return (temp);
-} */
-
-/* t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
-{
-	t_list	*temp;
-	t_list	*list;
-
-	temp = (t_list *)malloc(sizeof(*temp));
-	if (!temp)
-		return (0);
-	list = temp;
-	list->next = 0;
-	list->content = f(lst->content);
-	lst = lst->next;
-	while (lst)
-	{
-		list->next = (t_list *)malloc(sizeof(list));
-		if (!list->next)
-		{
-			ft_lstclear(&temp, del);
-			return (0);
-		}
-		list = list->next;
-		list->next = 0;
-		list->content = f(lst->content);
-		lst = lst->next;
-	}
-	return (temp);
-} */
-
 /* #include <stdio.h>
 
 int	main(void)

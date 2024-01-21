@@ -24,13 +24,15 @@ int	ft_check_content(char **map)
 	int		i;
 	size_t	j;
 	size_t	len;
+	size_t	half;
 
 	i = 1;
 	len = ft_strlen(map[i]);
+	half = ft_strlen(map[i]) / 2;
 	while (map[i] && map[i + 1])
 	{
-		j = 1;
-		while (j <= len / 2)
+		j = 0;
+		while (++j <= half)
 		{
 			if (ft_map_content(map[i][j]))
 				return (EXIT_FAILURE);
@@ -40,7 +42,6 @@ int	ft_check_content(char **map)
 				return (EXIT_FAILURE);
 			if (ft_map_content(map[i + 1][len - j]))
 				return (EXIT_FAILURE);
-			j++;
 		}
 		i += 2;
 	}
