@@ -6,11 +6,11 @@
 /*   By: albartol <albartol@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:42:59 by albartol          #+#    #+#             */
-/*   Updated: 2024/01/19 17:20:36 by albartol         ###   ########.fr       */
+/*   Updated: 2024/01/22 14:11:54 by albartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <so_long.h>
+#include "../include/so_long.h"
 
 static void	ft_check_file(char *file)
 {

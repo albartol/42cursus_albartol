@@ -6,11 +6,11 @@
 /*   By: albartol <albartol@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 17:51:29 by albartol          #+#    #+#             */
-/*   Updated: 2024/01/19 18:04:10 by albartol         ###   ########.fr       */
+/*   Updated: 2024/01/22 14:11:36 by albartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <so_long.h>
+#include "../include/so_long.h"
 
 static int	ft_map_content(char c)
 {

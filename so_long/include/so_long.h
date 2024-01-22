@@ -6,7 +6,7 @@
 /*   By: albartol <albartol@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:53:51 by albartol          #+#    #+#             */
-/*   Updated: 2024/01/19 18:03:40 by albartol         ###   ########.fr       */
+/*   Updated: 2024/01/22 18:26:56 by albartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,12 @@ char	**ft_get_map(char *file);
 
 void	ft_check_map(char **map);
 int		ft_check_content(char **map);
+void    ft_check_path(char **map);
 
 // so_long_utils: later move to libft
 
 void	ft_perror(char *str);
 void	ft_free_array(char **array);
+char	**ft_array_dup(char **array);
 
 #endif

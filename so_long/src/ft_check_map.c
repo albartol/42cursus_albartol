@@ -6,13 +6,13 @@
 /*   By: albartol <albartol@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 13:09:40 by albartol          #+#    #+#             */
-/*   Updated: 2024/01/19 18:03:25 by albartol         ###   ########.fr       */
+/*   Updated: 2024/01/22 15:20:43 by albartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <so_long.h>
+#include "../include/so_long.h"
 
-static int	ft_check_dup(char **map, char c, short dup)
+static int	ft_check_dup(char **map, char c, int dup)
 {
 	int		i;
 	size_t	j;
@@ -20,18 +20,20 @@ static int	ft_check_dup(char **map, char c, short dup)
 
 	i = 1;
 	len = ft_strlen(map[i]);
-	while (map[i + 1])
+	while (map[i] && map[i + 1])
 	{
 		j = 1;
 		while (j < len - 1)
 		{
 			if (map[i][j] == c)
 				dup++;
+			if (map[i + 1][j] == c)
+				dup++;
 			j++;
 		}
 		if (dup > 1)
 			return (EXIT_FAILURE);
-		i++;
+		i += 2;
 	}
 	if (dup != 1)
 		return (EXIT_FAILURE);
@@ -124,6 +126,11 @@ void	ft_check_map(char **map)
 {
 	ft_check_len(map);
 	ft_check_walls(map);
+	if (ft_check_content(map))
+	{
+		ft_free_array(map);
+		ft_perror("Error\nEl contenido del mapa no es valido\n");
+	}
 	ft_check_collectible(map);
 	if (ft_check_dup(map, 'E', 0))
 	{
@@ -135,9 +142,5 @@ void	ft_check_map(char **map)
 		ft_free_array(map);
 		ft_perror("Error\nHay duplicados del personaje o no existe\n");
 	}
-	if (ft_check_content(map))
-	{
-		ft_free_array(map);
-		ft_perror("Error\nEl contenido del mapa no es valido\n");
-	}
+	ft_check_path(map);
 }

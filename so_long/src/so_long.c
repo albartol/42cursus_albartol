@@ -6,11 +6,11 @@
 /*   By: albartol <albartol@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:44:08 by albartol          #+#    #+#             */
-/*   Updated: 2024/01/19 15:33:50 by albartol         ###   ########.fr       */
+/*   Updated: 2024/01/22 15:05:17 by albartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <so_long.h>
+#include "../include/so_long.h" 
 
 void	ft_print_map(char **map)
 {
