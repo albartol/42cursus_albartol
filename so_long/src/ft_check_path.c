@@ -6,7 +6,7 @@
 /*   By: albartol <albartol@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:10:53 by albartol          #+#    #+#             */
-/*   Updated: 2024/01/22 18:28:02 by albartol         ###   ########.fr       */
+/*   Updated: 2024/01/22 18:29:54 by albartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ void	ft_check_path(char **map)
 	if (ft_fill_map(map_copy, col))
 	{
 		ft_free_array(map);
+		ft_free_array(map_copy);
 		ft_perror("Error\nCamino no valido\n");
 	}
 	ft_free_array(map_copy);
