@@ -6,7 +6,7 @@
 /*   By: albartol <albartol@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:48:27 by albartol          #+#    #+#             */
-/*   Updated: 2024/01/22 14:59:10 by albartol         ###   ########.fr       */
+/*   Updated: 2024/01/23 17:38:14 by albartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,14 @@ char	**ft_array_dup(char **array)
 		j++;
 	}
 	return (dup);
+}
+
+int	ft_array_len(char **array)
+{
+	int	i;
+
+	i = 0;
+	while (array[i])
+		i++;
+	return (i);
 }
