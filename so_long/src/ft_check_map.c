@@ -6,7 +6,7 @@
 /*   By: albartol <albartol@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 13:09:40 by albartol          #+#    #+#             */
-/*   Updated: 2024/01/22 15:20:43 by albartol         ###   ########.fr       */
+/*   Updated: 2024/01/23 15:48:21 by albartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ static void	ft_check_collectible(char **map)
 		j = 1;
 		while (j <= len)
 		{
-			if (map[i][j] == 'C')
+			if (map[i][j] == OBJ)
 				return ;
-			if (map[i + 1][j] == 'C')
+			if (map[i + 1][j] == OBJ)
 				return ;
-			if (map[i][len + j] == 'C')
+			if (map[i][len + j] == OBJ)
 				return ;
-			if (map[i + 1][len + j] == 'C')
+			if (map[i + 1][len + j] == OBJ)
 				return ;
 			j++;
 		}
@@ -78,7 +78,7 @@ static void	ft_check_walls(char **map)
 	j = ft_strlen(map[i]) - 1;
 	while (map[i])
 	{
-		if (map[i][0] != '1' || map[i][j] != '1')
+		if (map[i][0] != WALL || map[i][j] != WALL)
 		{
 			ft_free_array(map);
 			ft_perror("Error\nLas paredes no son validas\n");
@@ -89,7 +89,7 @@ static void	ft_check_walls(char **map)
 	j = 0;
 	while (map[i][j])
 	{
-		if (map[0][j] != '1' || map[i][j] != '1')
+		if (map[0][j] != WALL || map[i][j] != WALL)
 		{
 			ft_free_array(map);
 			ft_perror("Error\nLas paredes no son validas\n");
@@ -132,12 +132,12 @@ void	ft_check_map(char **map)
 		ft_perror("Error\nEl contenido del mapa no es valido\n");
 	}
 	ft_check_collectible(map);
-	if (ft_check_dup(map, 'E', 0))
+	if (ft_check_dup(map, EXIT, 0))
 	{
 		ft_free_array(map);
 		ft_perror("Error\nHay duplicados de la salida o no existe\n");
 	}
-	if (ft_check_dup(map, 'P', 0))
+	if (ft_check_dup(map, PLAYER, 0))
 	{
 		ft_free_array(map);
 		ft_perror("Error\nHay duplicados del personaje o no existe\n");

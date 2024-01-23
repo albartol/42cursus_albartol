@@ -6,7 +6,7 @@
 /*   By: albartol <albartol@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:10:53 by albartol          #+#    #+#             */
-/*   Updated: 2024/01/22 18:29:54 by albartol         ###   ########.fr       */
+/*   Updated: 2024/01/23 15:48:21 by albartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static int	ft_count_collectibles(char **map)
 		j = 1;
 		while (j < len - 1)
 		{
-			if (map[i][j] == 'C')
+			if (map[i][j] == OBJ)
 				res++;
-			if (map[i + 1][j] == 'C')
+			if (map[i + 1][j] == OBJ)
 				res++;
 			j++;
 		}
@@ -40,22 +40,22 @@ static int	ft_count_collectibles(char **map)
 
 static int	ft_update_map(char **map, int i, int j, int *col)
 {
-	if (map[i][j] == '0')
+	if (map[i][j] == FLOOR)
 	{
-		if (map[i][j + 1] == 'P' || map[i][j - 1] == 'P')
-			map[i][j] = 'P';
-		else if (map[i + 1][j] == 'P' || map[i - 1][j] == 'P')
-			map[i][j] = 'P';
-		if (map[i][j] == 'P')
+		if (map[i][j + 1] == PLAYER || map[i][j - 1] == PLAYER)
+			map[i][j] = PLAYER;
+		else if (map[i + 1][j] == PLAYER || map[i - 1][j] == PLAYER)
+			map[i][j] = PLAYER;
+		if (map[i][j] == PLAYER)
 			return (1);
 	}
-	else if (map[i][j] == 'C')
+	else if (map[i][j] == OBJ)
 	{
-		if (map[i][j + 1] == 'P' || map[i][j - 1] == 'P')
-			map[i][j] = 'P';
-		else if (map[i + 1][j] == 'P' || map[i - 1][j] == 'P')
-			map[i][j] = 'P';
-		if (map[i][j] == 'P')
+		if (map[i][j + 1] == PLAYER || map[i][j - 1] == PLAYER)
+			map[i][j] = PLAYER;
+		else if (map[i + 1][j] == PLAYER || map[i - 1][j] == PLAYER)
+			map[i][j] = PLAYER;
+		if (map[i][j] == PLAYER)
 		{
 			(*col)--;
 			return (1);
@@ -71,15 +71,15 @@ static int	ft_check_exit(char **map, int i, int j)
 		j = 1;
 		while (map[i][j])
 		{
-			if (map[i][j] == 'E')
+			if (map[i][j] == EXIT)
 			{
-				if (map[i][j + 1] == 'P')
+				if (map[i][j + 1] == PLAYER)
 					return (EXIT_SUCCESS);
-				else if (map[i][j - 1] == 'P')
+				else if (map[i][j - 1] == PLAYER)
 					return (EXIT_SUCCESS);
-				else if (map[i + 1][j] == 'P')
+				else if (map[i + 1][j] == PLAYER)
 					return (EXIT_SUCCESS);
-				else if (map[i - 1][j] == 'P')
+				else if (map[i - 1][j] == PLAYER)
 					return (EXIT_SUCCESS);
 				else
 					return (EXIT_FAILURE);

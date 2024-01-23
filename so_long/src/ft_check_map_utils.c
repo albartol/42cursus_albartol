@@ -6,7 +6,7 @@
 /*   By: albartol <albartol@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 17:51:29 by albartol          #+#    #+#             */
-/*   Updated: 2024/01/22 14:11:36 by albartol         ###   ########.fr       */
+/*   Updated: 2024/01/23 16:01:03 by albartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,19 @@
 
 static int	ft_map_content(char c)
 {
-	if (c != 'C' && c != 'P' && c != 'E' && c != '0' && c != '1')
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+	if (c == FLOOR)
+		return (EXIT_SUCCESS);
+	else if (c == WALL)
+		return (EXIT_SUCCESS);
+	else if (c == OBJ)
+		return (EXIT_SUCCESS);
+	else if (c == TRAP)
+		return (EXIT_SUCCESS);
+	else if (c == PLAYER)
+		return (EXIT_SUCCESS);
+	else if (c == EXIT)
+		return (EXIT_SUCCESS);
+	return (EXIT_FAILURE);
 }
 
 int	ft_check_content(char **map)
