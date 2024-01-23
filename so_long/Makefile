@@ -10,6 +10,14 @@
 #                                                                              #
 # **************************************************************************** #
 
+UNAME := $(shell uname)
+MLX=-Lmlx -lmlx -L/usr/lib -Imlx -lXext -lX11
+# MLX_I=-I/usr/include -Imlx
+ifeq ($(UNAME), Darwin)
+    MLX=-Lmlx -lmlx -framework OpenGL -framework AppKit
+    # MLX_I=-Imlx
+endif
+
 CC=gcc
 
 CFLAGS:=-Wall -Wextra -Werror
@@ -25,10 +33,10 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(MAKE) -C lib/libft
-	$(CC) $(CFLAGS) -O3 $^ -Llib/libft -lft -Lmlx -lmlx -framework OpenGL -framework AppKit -o $@
+	$(CC) $(CFLAGS) -O3 $^ -Llib/libft -lft $(MLX) -o $@
 
 %.o: %.c
-	$(CC) $(CFLAGS) -O3 -c $< -o $@
+	$(CC) $(CFLAGS) -O3 $(MLX_I) -c $< -o $@
 
 clean:
 	$(MAKE) clean -C lib/libft
