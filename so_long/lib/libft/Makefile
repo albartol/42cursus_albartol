@@ -28,6 +28,9 @@ get_next_line.c \
 \
 ft_printf.c ft_putstr_n.c ft_putchar_n.c ft_putnbr_n.c ft_putnbr_base_n.c \
 ft_putptr_n.c \
+\
+ft_merge_sort.c ft_quick_sort.c\
+\
 ft_charjoin.c
 
 NAME=libft.a

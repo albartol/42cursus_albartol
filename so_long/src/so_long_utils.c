@@ -12,16 +12,10 @@
 
 #include "../include/so_long.h"
 
-void	ft_perror(char *str)
+void	ft_perror(const char *str)
 {
-	int	i;
-
 	if (str && *str)
-	{
-		i = write(2, str, ft_strlen(str));
-		if (i == -1)
-			exit(EXIT_FAILURE);
-	}
+		ft_putstr_fd((char *)str, 2);
 	exit(EXIT_FAILURE);
 }
 

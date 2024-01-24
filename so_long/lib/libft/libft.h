@@ -98,6 +98,11 @@ int					ft_putnbr_n(long nbr);
 int					ft_putnbr_base_n(unsigned long nbr, char *base);
 int					ft_putptr_n(unsigned long ptr);
 
+// push_swap
+
+void	ft_quick_sort(int *list, int start, int len);
+void	ft_merge_sort(int *list, int i, int *list_temp);
+
 // minitalk
 
 char				*ft_charjoin(char *str, char c);

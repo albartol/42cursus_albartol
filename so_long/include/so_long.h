@@ -58,7 +58,7 @@ void		ft_display(char **map, t_display *display);
 
 // so_long_utils: later move to libft
 
-void		ft_perror(char *str);
+void		ft_perror(const char *str);
 void		ft_free_array(char **array);
 char		**ft_array_dup(char **array);
 int			ft_array_len(char **array);
