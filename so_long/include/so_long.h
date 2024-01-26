@@ -6,7 +6,7 @@
 /*   By: albartol <albartol@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:53:51 by albartol          #+#    #+#             */
-/*   Updated: 2024/01/23 17:53:16 by albartol         ###   ########.fr       */
+/*   Updated: 2024/01/26 16:26:36 by albartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,19 @@ typedef struct s_image
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int		width;
+	int		height;
 }			t_image;
+
+typedef struct s_imgs
+{
+	t_image	wall;
+	t_image	floor;
+	t_image	obj;
+	t_image	exit;
+	t_image	player;
+	t_image	trap;
+}			t_imgs;
 
 // ft_get_map: read map from "*.ber" file
 
@@ -54,7 +66,12 @@ void		ft_check_path(char **map);
 
 // ft_display: mlx part
 
-void		ft_display(char **map, t_display *display);
+void		ft_display(char **map, t_display *display, t_imgs *imgs);
+void		ft_display_init(char **map, t_display *display);
+void		ft_str_init(t_display *display, int x, int y, char *str);
+void		ft_img_init(t_display *display, t_image *img, char *str,
+				char **map);
+void		ft_put_img(t_display *display, t_image *img, char **map, int tile);
 
 // so_long_utils: later move to libft
 

@@ -6,7 +6,7 @@
 #    By: albartol <albartol@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/16 15:10:32 by albartol          #+#    #+#              #
-#    Updated: 2024/01/23 17:55:55 by albartol         ###   ########.fr        #
+#    Updated: 2024/01/26 15:57:31 by albartol         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ UNAME := $(shell uname)
 MLX=-Lmlx -lmlx -L/usr/lib -Imlx -lXext -lX11
 # MLX_I=-I/usr/include -Imlx
 ifeq ($(UNAME), Darwin)
-    MLX=-Lmlx -lmlx -framework OpenGL -framework AppKit
+    MLX=-lmlx -framework OpenGL -framework AppKit
     # MLX_I=-Imlx
 endif
 
@@ -23,7 +23,8 @@ CC=gcc
 CFLAGS:=-Wall -Wextra -Werror
 
 SRC=src/so_long.c src/ft_get_map.c src/so_long_utils.c src/ft_check_map.c \
-src/ft_check_map_utils.c src/ft_check_path.c src/ft_display.c
+src/ft_check_map_utils.c src/ft_check_path.c src/ft_display.c \
+src/ft_display_utils.c
 
 OBJ=$(SRC:%.c=%.o)
 
