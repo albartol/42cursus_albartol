@@ -6,7 +6,7 @@
 #    By: albartol <albartol@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/16 15:10:32 by albartol          #+#    #+#              #
-#    Updated: 2024/01/26 15:57:31 by albartol         ###   ########.fr        #
+#    Updated: 2024/01/26 18:50:24 by albartol         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ CFLAGS:=-Wall -Wextra -Werror
 
 SRC=src/so_long.c src/ft_get_map.c src/so_long_utils.c src/ft_check_map.c \
 src/ft_check_map_utils.c src/ft_check_path.c src/ft_display.c \
-src/ft_display_utils.c
+src/ft_render_frame.c src/ft_hooks.c src/ft_move_player.c
 
 OBJ=$(SRC:%.c=%.o)
 

@@ -6,7 +6,7 @@
 /*   By: albartol <albartol@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:53:51 by albartol          #+#    #+#             */
-/*   Updated: 2024/01/26 16:26:36 by albartol         ###   ########.fr       */
+/*   Updated: 2024/01/26 18:48:45 by albartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,59 +25,111 @@ typedef enum e_tiles
 	EXIT = 'E',
 	TRAP = 'T',
 	TILE_SIZE = 64
-}			t_tiles;
+}				t_tiles;
+
+typedef enum e_keys
+{
+	UP = 126,
+	DOWN = 125,
+	RIGHT = 124,
+	LEFT = 123,
+	W_UP = 13,
+	S_DOWN = 1,
+	D_RIGHT = 2,
+	A_LEFT = 0,
+	END = 53,
+}				t_keys;
+
+typedef enum e_events
+{
+	ON_KEYDOWN = 2,
+	ON_KEYUP = 3,
+	ON_MOUSEDOWN = 4,
+	ON_MOUSEUP = 5,
+	ON_MOUSEMOVE = 6,
+	ON_EXPOSE = 12,
+	ON_DESTROY = 17
+}				t_events;
 
 typedef struct s_display
 {
-	void	*mlx;
-	void	*win;
-}			t_display;
+	void		*mlx;
+	void		*win;
+}				t_display;
 
 typedef struct s_image
 {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		width;
-	int		height;
-}			t_image;
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+	int			width;
+	int			height;
+}				t_image;
 
 typedef struct s_imgs
 {
-	t_image	wall;
-	t_image	floor;
-	t_image	obj;
-	t_image	exit;
-	t_image	player;
-	t_image	trap;
-}			t_imgs;
+	t_image		wall;
+	t_image		floor;
+	t_image		obj;
+	t_image		exit;
+	t_image		player;
+	t_image		trap;
+}				t_imgs;
+
+typedef struct s_game
+{
+	t_display	display;
+	t_imgs		imgs;
+	char		**map;
+	int			y;
+	int			x;
+	int			moves;
+	int			obj;
+}				t_game;
 
 // ft_get_map: read map from "*.ber" file
 
-char		**ft_get_map(char *file);
+char			**ft_get_map(char *file);
 
 // ft_check_map: check if map is valid
 
-void		ft_check_map(char **map);
-int			ft_check_content(char **map);
-void		ft_check_path(char **map);
+void			ft_check_map(char **map);
+int				ft_check_content(char **map);
+void			ft_check_path(char **map);
 
 // ft_display: mlx part
 
-void		ft_display(char **map, t_display *display, t_imgs *imgs);
-void		ft_display_init(char **map, t_display *display);
-void		ft_str_init(t_display *display, int x, int y, char *str);
-void		ft_img_init(t_display *display, t_image *img, char *str,
-				char **map);
-void		ft_put_img(t_display *display, t_image *img, char **map, int tile);
+void			ft_display(char **map, t_display *display, t_imgs *imgs);
+
+// ft_hooks
+
+void			ft_destroy_images(void *mlx, t_imgs imgs);
+int				ft_process_input(int keycode, t_game *game);
+int				ft_close(t_game *game);
+int				ft_render_frame(t_game *game);
+
+// ft_render_frame
+
+void			ft_str_init(t_display *display, int x, int y, char *str);
+void			ft_put_img(t_display *display, t_image *img, char **map,
+					int tile);
+void			ft_put_images(char **map, t_display *display, t_imgs *imgs);
+
+// ft_move_player
+
+void			ft_move_player(int keycode, t_game *game);
+
+// ft_check_path
+
+int				ft_count_collectibles(char **map);
 
 // so_long_utils: later move to libft
 
-void		ft_perror(const char *str);
-void		ft_free_array(char **array);
-char		**ft_array_dup(char **array);
-int			ft_array_len(char **array);
+void			ft_perror(const char *str);
+void			ft_free_array(char **array);
+char			**ft_array_dup(char **array);
+int				ft_array_len(char **array);
 
 #endif

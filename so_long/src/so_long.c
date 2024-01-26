@@ -6,7 +6,7 @@
 /*   By: albartol <albartol@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:44:08 by albartol          #+#    #+#             */
-/*   Updated: 2024/01/26 16:24:59 by albartol         ###   ########.fr       */
+/*   Updated: 2024/01/26 18:46:10 by albartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,29 +32,39 @@ void	ft_leaks(void)
 	(void)i;
 }
 
-int	ft_close(int keycode, t_display *display)
+static void	ft_get_player(t_game *game)
 {
-	(void)keycode;
-	mlx_destroy_window(display->mlx, display->win);
-	exit(EXIT_SUCCESS);
-	return (0);
+	game->x = 0;
+	while (game->map[game->x])
+	{
+		game->y = 0;
+		while (game->map[game->x][game->y])
+		{
+			return ;
+			game->y++;
+		}
+		game->x++;
+	}
 }
 
 int	main(int argc, char **argv)
 {
-	char		**map;
-	t_display	display;
-	t_imgs		imgs;
+	t_game	game;
 
 	atexit(ft_leaks);
 	if (argc != 2)
 		return (EXIT_FAILURE);
-	map = ft_get_map(argv[1]);
-	ft_print_array(map);
-	ft_check_map(map);
-	ft_display(map, &display, &imgs);
-	mlx_hook(display.win, 2, (1L << 0), ft_close, &display);
-	mlx_loop(display.mlx);
-	ft_free_array(map);
+	game.moves = 0;
+	game.map = ft_get_map(argv[1]);
+	ft_print_array(game.map);
+	ft_check_map(game.map);
+	ft_get_player(&game);
+	game.obj = ft_count_collectibles(game.map);
+	ft_display(game.map, &game.display, &game.imgs);
+	mlx_hook(game.display.win, ON_KEYDOWN, (1L << 0), ft_process_input, &game);
+	mlx_hook(game.display.win, ON_DESTROY, 0, ft_close, &game);
+	mlx_loop_hook(game.display.mlx, ft_render_frame, &game);
+	mlx_loop(game.display.mlx);
+	ft_free_array(game.map);
 	return (EXIT_SUCCESS);
 }

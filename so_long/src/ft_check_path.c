@@ -6,13 +6,13 @@
 /*   By: albartol <albartol@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:10:53 by albartol          #+#    #+#             */
-/*   Updated: 2024/01/23 15:48:21 by albartol         ###   ########.fr       */
+/*   Updated: 2024/01/26 18:44:13 by albartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-static int	ft_count_collectibles(char **map)
+int	ft_count_collectibles(char **map)
 {
 	int		i;
 	int		res;
