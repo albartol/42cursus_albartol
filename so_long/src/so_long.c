@@ -6,44 +6,45 @@
 /*   By: albartol <albartol@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:44:08 by albartol          #+#    #+#             */
-/*   Updated: 2024/01/26 18:46:10 by albartol         ###   ########.fr       */
+/*   Updated: 2024/01/26 20:05:52 by albartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void	ft_print_array(char **map)
-{
-	int	i;
+// void	ft_print_array(char **map)
+// {
+// 	int	i;
 
-	i = 0;
-	while (map[i])
-	{
-		ft_printf("%s\n", map[i]);
-		i++;
-	}
-}
+// 	i = 0;
+// 	while (map[i])
+// 	{
+// 		ft_printf("%s\n", map[i]);
+// 		i++;
+// 	}
+// }
 
-void	ft_leaks(void)
-{
-	int	i;
+// void	ft_leaks(void)
+// {
+// 	int	i;
 
-	i = system("leaks so_long");
-	(void)i;
-}
+// 	i = system("leaks so_long");
+// 	(void)i;
+// }
 
 static void	ft_get_player(t_game *game)
 {
-	game->x = 0;
-	while (game->map[game->x])
+	game->y = 0;
+	while (game->map[game->y])
 	{
-		game->y = 0;
-		while (game->map[game->x][game->y])
+		game->x = 0;
+		while (game->map[game->y][game->x])
 		{
-			return ;
-			game->y++;
+			if (game->map[game->y][game->x] == PLAYER)
+				return ;
+			game->x++;
 		}
-		game->x++;
+		game->y++;
 	}
 }
 
@@ -51,15 +52,16 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
-	atexit(ft_leaks);
+	// atexit(ft_leaks);
 	if (argc != 2)
 		return (EXIT_FAILURE);
 	game.moves = 0;
 	game.map = ft_get_map(argv[1]);
-	ft_print_array(game.map);
+	// ft_print_array(game.map);
 	ft_check_map(game.map);
 	ft_get_player(&game);
 	game.obj = ft_count_collectibles(game.map);
+	// ft_printf("y: %d x: %d obj:%d\n", game.y, game.x, game.obj);
 	ft_display(game.map, &game.display, &game.imgs);
 	mlx_hook(game.display.win, ON_KEYDOWN, (1L << 0), ft_process_input, &game);
 	mlx_hook(game.display.win, ON_DESTROY, 0, ft_close, &game);

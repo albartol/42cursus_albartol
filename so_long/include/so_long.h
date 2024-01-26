@@ -6,7 +6,7 @@
 /*   By: albartol <albartol@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:53:51 by albartol          #+#    #+#             */
-/*   Updated: 2024/01/26 18:48:45 by albartol         ###   ########.fr       */
+/*   Updated: 2024/01/26 19:58:17 by albartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ void			ft_str_init(t_display *display, int x, int y, char *str);
 void			ft_put_img(t_display *display, t_image *img, char **map,
 					int tile);
 void			ft_put_images(char **map, t_display *display, t_imgs *imgs);
+void			ft_put_background(char **map, t_display *display, t_imgs *imgs);
 
 // ft_move_player
 

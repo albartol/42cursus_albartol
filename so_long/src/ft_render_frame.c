@@ -6,7 +6,7 @@
 /*   By: albartol <albartol@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 18:23:30 by albartol          #+#    #+#             */
-/*   Updated: 2024/01/26 18:37:50 by albartol         ###   ########.fr       */
+/*   Updated: 2024/01/26 19:57:40 by albartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,25 @@ void	ft_put_img(t_display *display, t_image *img, char **map, int tile)
 				mlx_put_image_to_window(display->mlx, display->win, img->img, x
 					* TILE_SIZE, y * TILE_SIZE);
 			}
+			x++;
+		}
+		y++;
+	}
+}
+
+void	ft_put_background(char **map, t_display *display, t_imgs *imgs)
+{
+	int	x;
+	int	y;
+
+	y = 1;
+	while (map[y + 1])
+	{
+		x = 1;
+		while (map[y][x + 1])
+		{
+			mlx_put_image_to_window(display->mlx, display->win, imgs->floor.img,
+				x * TILE_SIZE, y * TILE_SIZE);
 			x++;
 		}
 		y++;

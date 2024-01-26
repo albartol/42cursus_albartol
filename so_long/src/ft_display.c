@@ -6,7 +6,7 @@
 /*   By: albartol <albartol@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 17:17:41 by albartol          #+#    #+#             */
-/*   Updated: 2024/01/26 18:40:36 by albartol         ###   ########.fr       */
+/*   Updated: 2024/01/26 19:59:42 by albartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,5 @@ void	ft_display(char **map, t_display *display, t_imgs *imgs)
 {
 	ft_display_init(map, display);
 	ft_images_init(map, display, imgs);
+	ft_put_background(map, display, imgs);
 }

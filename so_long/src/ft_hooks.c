@@ -6,7 +6,7 @@
 /*   By: albartol <albartol@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 18:11:09 by albartol          #+#    #+#             */
-/*   Updated: 2024/01/26 18:48:23 by albartol         ###   ########.fr       */
+/*   Updated: 2024/01/26 20:05:04 by albartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_destroy_images(void *mlx, t_imgs imgs)
 
 int	ft_process_input(int keycode, t_game *game)
 {
-	ft_printf("keycode: %d\n", keycode);
+	// ft_printf("keycode: %d\n", keycode);
 	if (keycode == END)
 	{
 		mlx_destroy_window(game->display.mlx, game->display.win);
@@ -45,14 +45,15 @@ int	ft_close(t_game *game)
 
 int	ft_render_frame(t_game *game)
 {
-    char *nbr;
-    char *str;
-    
-    ft_put_images(game->map, &game->display, &game->imgs);
-    nbr = ft_itoa(game->moves);
-    str = ft_strjoin("Number of movements: ", nbr);
+	char	*nbr;
+	char	*str;
+
+	// ft_put_background(game->map, &game->display, &game->imgs);
+	ft_put_images(game->map, &game->display, &game->imgs);
+	nbr = ft_itoa(game->moves);
+	str = ft_strjoin("Number of movements: ", nbr);
 	ft_str_init(&game->display, 10, 5, str);
-    free(nbr);
-    free(str);
+	free(nbr);
+	free(str);
 	return (0);
 }
