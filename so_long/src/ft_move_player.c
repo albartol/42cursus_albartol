@@ -31,9 +31,7 @@ static void	ft_move_up(t_game *game)
 	{
 		if (game->map[game->y - 1][game->x] == EXIT && game->obj)
 			return ;
-		mlx_destroy_window(game->display.mlx, game->display.win);
-		ft_destroy_images(game->display.mlx, game->imgs);
-		exit(EXIT_SUCCESS);
+		mlx_loop_end(game->display.mlx);
 	}
 }
 
@@ -56,9 +54,7 @@ static void	ft_move_down(t_game *game)
 	{
 		if (game->map[game->y + 1][game->x] == EXIT && game->obj)
 			return ;
-		mlx_destroy_window(game->display.mlx, game->display.win);
-		ft_destroy_images(game->display.mlx, game->imgs);
-		exit(EXIT_SUCCESS);
+		mlx_loop_end(game->display.mlx);
 	}
 }
 
@@ -81,9 +77,7 @@ static void	ft_move_left(t_game *game)
 	{
 		if (game->map[game->y][game->x - 1] == EXIT && game->obj)
 			return ;
-		mlx_destroy_window(game->display.mlx, game->display.win);
-		ft_destroy_images(game->display.mlx, game->imgs);
-		exit(EXIT_SUCCESS);
+		mlx_loop_end(game->display.mlx);
 	}
 }
 
@@ -107,21 +101,19 @@ static void	ft_move_rigth(t_game *game)
 	{
 		if (game->map[game->y][game->x + 1] == EXIT && game->obj)
 			return ;
-		mlx_destroy_window(game->display.mlx, game->display.win);
-		ft_destroy_images(game->display.mlx, game->imgs);
-		exit(EXIT_SUCCESS);
+		mlx_loop_end(game->display.mlx);
 	}
 }
 
 void	ft_move_player(int keycode, t_game *game)
 {
-	if (keycode == UP)
+	if (keycode == UP || keycode == WSL_UP)
 		ft_move_up(game);
-	else if (keycode == DOWN)
+	else if (keycode == DOWN || keycode == WSL_DOWN)
 		ft_move_down(game);
-	else if (keycode == LEFT)
+	else if (keycode == LEFT || keycode == WSL_LEFT)
 		ft_move_left(game);
-	else if (keycode == RIGHT)
+	else if (keycode == RIGHT || keycode == WSL_RIGTH)
 		ft_move_rigth(game);
 	// ft_print_array(game->map);
 	// ft_printf("y: %d x: %d obj:%d\n", game->y, game->x, game->obj);

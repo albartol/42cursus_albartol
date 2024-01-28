@@ -48,6 +48,15 @@ static void	ft_get_player(t_game *game)
 	}
 }
 
+void	ft_end_game(t_game	*game)
+{
+	mlx_destroy_window(game->display.mlx, game->display.win);
+	ft_destroy_images(game->display.mlx, game->imgs);
+	mlx_destroy_display(game->display.mlx);
+	free(game->display.mlx);
+	ft_free_array(game->map);
+}
+
 int	main(int argc, char **argv)
 {
 	t_game	game;
@@ -62,11 +71,11 @@ int	main(int argc, char **argv)
 	ft_get_player(&game);
 	game.obj = ft_count_collectibles(game.map);
 	// ft_printf("y: %d x: %d obj:%d\n", game.y, game.x, game.obj);
-	ft_display(game.map, &game.display, &game.imgs);
+	ft_display(&game);
 	mlx_hook(game.display.win, ON_KEYDOWN, (1L << 0), ft_process_input, &game);
 	mlx_hook(game.display.win, ON_DESTROY, 0, ft_close, &game);
 	mlx_loop_hook(game.display.mlx, ft_render_frame, &game);
 	mlx_loop(game.display.mlx);
-	ft_free_array(game.map);
+	ft_end_game(&game);
 	return (EXIT_SUCCESS);
 }

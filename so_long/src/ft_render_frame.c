@@ -31,7 +31,7 @@ void	ft_put_img(t_display *display, t_image *img, char **map, int tile)
 			if (map[y][x] == tile)
 			{
 				mlx_put_image_to_window(display->mlx, display->win, img->img, x
-					* TILE_SIZE, y * TILE_SIZE);
+					* TILE_SIZE, y * TILE_SIZE + FREE_SPACE);
 			}
 			x++;
 		}
@@ -39,27 +39,28 @@ void	ft_put_img(t_display *display, t_image *img, char **map, int tile)
 	}
 }
 
-void	ft_put_background(char **map, t_display *display, t_imgs *imgs)
-{
-	int	x;
-	int	y;
+// void	ft_put_background(char **map, t_display *display, t_imgs *imgs)
+// {
+// 	int	x;
+// 	int	y;
 
-	y = 1;
-	while (map[y + 1])
-	{
-		x = 1;
-		while (map[y][x + 1])
-		{
-			mlx_put_image_to_window(display->mlx, display->win, imgs->floor.img,
-				x * TILE_SIZE, y * TILE_SIZE);
-			x++;
-		}
-		y++;
-	}
-}
+// 	y = 1;
+// 	while (map[y + 1])
+// 	{
+// 		x = 1;
+// 		while (map[y][x + 1])
+// 		{
+// 			mlx_put_image_to_window(display->mlx, display->win, imgs->floor.img,
+// 				x * TILE_SIZE, y * TILE_SIZE);
+// 			x++;
+// 		}
+// 		y++;
+// 	}
+// }
 
 void	ft_put_images(char **map, t_display *display, t_imgs *imgs)
 {
+	mlx_put_image_to_window(display->mlx, display->win, imgs->blank.img, 0, 0);
 	ft_put_img(display, &imgs->wall, map, WALL);
 	ft_put_img(display, &imgs->floor, map, FLOOR);
 	ft_put_img(display, &imgs->obj, map, OBJ);

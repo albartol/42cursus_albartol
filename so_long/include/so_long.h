@@ -24,7 +24,8 @@ typedef enum e_tiles
 	OBJ = 'C',
 	EXIT = 'E',
 	TRAP = 'T',
-	TILE_SIZE = 64
+	TILE_SIZE = 64,
+	FREE_SPACE = 30
 }				t_tiles;
 
 typedef enum e_keys
@@ -33,11 +34,16 @@ typedef enum e_keys
 	DOWN = 125,
 	RIGHT = 124,
 	LEFT = 123,
+	WSL_LEFT = 65361,
+	WSL_UP = 65362,
+	WSL_RIGTH = 65363,
+	WSL_DOWN = 65364,
 	W_UP = 13,
 	S_DOWN = 1,
 	D_RIGHT = 2,
 	A_LEFT = 0,
 	END = 53,
+	WSL_END = 65307
 }				t_keys;
 
 typedef enum e_events
@@ -75,7 +81,9 @@ typedef struct s_imgs
 	t_image		obj;
 	t_image		exit;
 	t_image		player;
+	t_image		player_2;
 	t_image		trap;
+	t_image		blank;
 }				t_imgs;
 
 typedef struct s_game
@@ -87,6 +95,8 @@ typedef struct s_game
 	int			x;
 	int			moves;
 	int			obj;
+	int			width;
+	int			height;
 }				t_game;
 
 // ft_get_map: read map from "*.ber" file
@@ -101,7 +111,7 @@ void			ft_check_path(char **map);
 
 // ft_display: mlx part
 
-void			ft_display(char **map, t_display *display, t_imgs *imgs);
+void			ft_display(t_game *game);
 
 // ft_hooks
 
@@ -125,6 +135,10 @@ void			ft_move_player(int keycode, t_game *game);
 // ft_check_path
 
 int				ft_count_collectibles(char **map);
+
+// so_long -> ft_end_game
+
+void			ft_end_game(t_game	*game);
 
 // so_long_utils: later move to libft
 
