@@ -60,11 +60,23 @@ void	ft_put_img(t_display *display, t_image *img, char **map, int tile)
 
 void	ft_put_images(char **map, t_display *display, t_imgs *imgs)
 {
+	static int i;
+
+	usleep(10000); //justify usage
 	mlx_put_image_to_window(display->mlx, display->win, imgs->blank.img, 0, 0);
 	ft_put_img(display, &imgs->wall, map, WALL);
 	ft_put_img(display, &imgs->floor, map, FLOOR);
 	ft_put_img(display, &imgs->obj, map, OBJ);
-	ft_put_img(display, &imgs->trap, map, TRAP);
 	ft_put_img(display, &imgs->exit, map, EXIT);
 	ft_put_img(display, &imgs->player, map, PLAYER);
+	if (i++ < 30) //240
+		ft_put_img(display, &imgs->trap_2, map, TRAP);
+	else if (i++ < 60) //480
+		ft_put_img(display, &imgs->trap_1, map, TRAP);
+	else if (i++ < 90) //720
+		ft_put_img(display, &imgs->trap, map, TRAP);
+	else if (i++ < 120) //960
+		ft_put_img(display, &imgs->trap_1, map, TRAP);
+	if (i >= 120) //960
+		i = 0;
 }

@@ -81,8 +81,12 @@ typedef struct s_imgs
 	t_image		obj;
 	t_image		exit;
 	t_image		player;
+	t_image		player_1;
 	t_image		player_2;
+	t_image		player_3;
 	t_image		trap;
+	t_image		trap_1;
+	t_image		trap_2;
 	t_image		blank;
 }				t_imgs;
 

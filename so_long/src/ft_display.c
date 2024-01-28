@@ -66,8 +66,12 @@ static void	ft_images_init(t_game *game)
 	ft_img_init(game, &game->imgs.obj, "./textures/egg.xpm");
 	ft_img_init(game, &game->imgs.exit, "./textures/exit.xpm");
 	ft_img_init(game, &game->imgs.player, "./textures/rabbit.xpm");
-	ft_img_init(game, &game->imgs.player_2, "./textures/rabbit_1.xpm");
+	ft_img_init(game, &game->imgs.player_1, "./textures/rabbit_2.xpm");
+	ft_img_init(game, &game->imgs.player_2, "./textures/rabbit_left.xpm");
+	ft_img_init(game, &game->imgs.player_3, "./textures/rabbit_left_2.xpm");
 	ft_img_init(game, &game->imgs.trap, "./textures/trap.xpm");
+	ft_img_init(game, &game->imgs.trap_1, "./textures/trap_2.xpm");
+	ft_img_init(game, &game->imgs.trap_2, "./textures/trap_3.xpm");
 }
 
 void	ft_display(t_game *game)
