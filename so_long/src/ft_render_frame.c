@@ -6,7 +6,7 @@
 /*   By: albartol <albartol@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 18:23:30 by albartol          #+#    #+#             */
-/*   Updated: 2024/01/29 15:21:30 by albartol         ###   ########.fr       */
+/*   Updated: 2024/01/29 17:37:16 by albartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,23 @@ void	ft_str_init(t_display *display, int x, int y, char *str)
 
 void	ft_put_img(t_display *display, t_image *img, char **map, int tile)
 {
-	int	x;
 	int	y;
+	int	x;
 
-	y = 0;
-	while (map[y])
+	x = 0;
+	while (map[x])
 	{
-		x = 0;
-		while (map[y][x])
+		y = 0;
+		while (map[x][y])
 		{
-			if (map[y][x] == tile)
+			if (map[x][y] == tile)
 			{
-				mlx_put_image_to_window(display->mlx, display->win, img->img, x
-					* TILE_SIZE, y * TILE_SIZE + FREE_SPACE);
+				mlx_put_image_to_window(display->mlx, display->win, img->img, y
+					* TILE_SIZE, x * TILE_SIZE + FREE_SPACE);
 			}
-			x++;
+			y++;
 		}
-		y++;
+		x++;
 	}
 }
 
@@ -62,7 +62,7 @@ void	ft_put_images(char **map, t_display *display, t_imgs *imgs, t_game *g)
 {
 	static int	i;
 
-	usleep(10000); // justify usage
+	// usleep(10000); // justify usage
 	mlx_put_image_to_window(display->mlx, display->win, imgs->blank.img, 0, 0);
 	ft_put_img(display, &imgs->wall, map, WALL);
 	ft_put_img(display, &imgs->floor, map, FLOOR);

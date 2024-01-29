@@ -6,7 +6,7 @@
 /*   By: albartol <albartol@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 18:11:09 by albartol          #+#    #+#             */
-/*   Updated: 2024/01/29 15:25:37 by albartol         ###   ########.fr       */
+/*   Updated: 2024/01/29 16:03:20 by albartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	ft_render_frame(t_game *game)
 
 	ft_put_images(game->map, &game->display, &game->imgs, game);
 	nbr = ft_itoa(game->moves);
-	str = ft_strjoin("Number of movements: ", nbr);
+	str = ft_strjoin("Movements: ", nbr);
 	ft_str_init(&game->display, 10, 10, str);
 	free(nbr);
 	free(str);
