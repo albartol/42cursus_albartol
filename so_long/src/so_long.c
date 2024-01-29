@@ -6,7 +6,7 @@
 /*   By: albartol <albartol@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:44:08 by albartol          #+#    #+#             */
-/*   Updated: 2024/01/26 20:05:52 by albartol         ###   ########.fr       */
+/*   Updated: 2024/01/29 14:45:29 by albartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ void	ft_end_game(t_game	*game)
 {
 	mlx_destroy_window(game->display.mlx, game->display.win);
 	ft_destroy_images(game->display.mlx, game->imgs);
-	mlx_destroy_display(game->display.mlx);
-	free(game->display.mlx);
+	// mlx_destroy_display(game->display.mlx);
+	// free(game->display.mlx);
 	ft_free_array(game->map);
 }
 

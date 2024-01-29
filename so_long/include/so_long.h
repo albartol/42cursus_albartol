@@ -6,7 +6,7 @@
 /*   By: albartol <albartol@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:53:51 by albartol          #+#    #+#             */
-/*   Updated: 2024/01/26 19:58:17 by albartol         ###   ########.fr       */
+/*   Updated: 2024/01/29 15:21:10 by albartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct s_imgs
 	t_image		floor;
 	t_image		obj;
 	t_image		exit;
+	t_image		exit_closed;
 	t_image		player;
 	t_image		player_1;
 	t_image		player_2;
@@ -99,6 +100,7 @@ typedef struct s_game
 	int			x;
 	int			moves;
 	int			obj;
+	int			pos;
 	int			width;
 	int			height;
 }				t_game;
@@ -129,8 +131,9 @@ int				ft_render_frame(t_game *game);
 void			ft_str_init(t_display *display, int x, int y, char *str);
 void			ft_put_img(t_display *display, t_image *img, char **map,
 					int tile);
-void			ft_put_images(char **map, t_display *display, t_imgs *imgs);
-void			ft_put_background(char **map, t_display *display, t_imgs *imgs);
+void			ft_put_images(char **map, t_display *display, t_imgs *imgs,
+					t_game *g);
+// void			ft_put_background(char **map, t_display *display, t_imgs *imgs);
 
 // ft_move_player
 
@@ -142,7 +145,7 @@ int				ft_count_collectibles(char **map);
 
 // so_long -> ft_end_game
 
-void			ft_end_game(t_game	*game);
+void			ft_end_game(t_game *game);
 
 // so_long_utils: later move to libft
 

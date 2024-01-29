@@ -6,7 +6,7 @@
 /*   By: albartol <albartol@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 17:28:34 by albartol          #+#    #+#             */
-/*   Updated: 2024/01/26 20:04:01 by albartol         ###   ########.fr       */
+/*   Updated: 2024/01/29 15:17:11 by albartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ static void	ft_move_up(t_game *game)
 	{
 		if (game->map[game->y - 1][game->x] == EXIT && game->obj)
 			return ;
-		mlx_loop_end(game->display.mlx);
+		// mlx_loop_end(game->display.mlx);
+		ft_end_game(game);
+		exit(EXIT_SUCCESS);
 	}
 }
 
@@ -54,7 +56,9 @@ static void	ft_move_down(t_game *game)
 	{
 		if (game->map[game->y + 1][game->x] == EXIT && game->obj)
 			return ;
-		mlx_loop_end(game->display.mlx);
+		// mlx_loop_end(game->display.mlx);
+		ft_end_game(game);
+		exit(EXIT_SUCCESS);
 	}
 }
 
@@ -71,13 +75,16 @@ static void	ft_move_left(t_game *game)
 		game->map[game->y][game->x] = FLOOR;
 		game->x--;
 		game->moves++;
+		game->pos = 0;
 	}
 	else if (game->map[game->y][game->x - 1] == TRAP
 		|| game->map[game->y][game->x - 1] == EXIT)
 	{
 		if (game->map[game->y][game->x - 1] == EXIT && game->obj)
 			return ;
-		mlx_loop_end(game->display.mlx);
+		// mlx_loop_end(game->display.mlx);
+		ft_end_game(game);
+		exit(EXIT_SUCCESS);
 	}
 }
 
@@ -90,18 +97,20 @@ static void	ft_move_rigth(t_game *game)
 	{
 		if (game->map[game->y][game->x + 1] == OBJ)
 			game->obj--;
-		game->map[game->y][game->x + 1] = FLOOR;
 		game->map[game->y][game->x + 1] = PLAYER;
 		game->map[game->y][game->x] = FLOOR;
 		game->x++;
 		game->moves++;
+		game->pos = 1;
 	}
 	else if (game->map[game->y][game->x + 1] == TRAP
 		|| game->map[game->y][game->x + 1] == EXIT)
 	{
 		if (game->map[game->y][game->x + 1] == EXIT && game->obj)
 			return ;
-		mlx_loop_end(game->display.mlx);
+		// mlx_loop_end(game->display.mlx);
+		ft_end_game(game);
+		exit(EXIT_SUCCESS);
 	}
 }
 

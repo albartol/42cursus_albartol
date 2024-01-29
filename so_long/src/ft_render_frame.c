@@ -6,7 +6,7 @@
 /*   By: albartol <albartol@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 18:23:30 by albartol          #+#    #+#             */
-/*   Updated: 2024/01/26 19:57:40 by albartol         ###   ########.fr       */
+/*   Updated: 2024/01/29 15:21:30 by albartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,25 +58,31 @@ void	ft_put_img(t_display *display, t_image *img, char **map, int tile)
 // 	}
 // }
 
-void	ft_put_images(char **map, t_display *display, t_imgs *imgs)
+void	ft_put_images(char **map, t_display *display, t_imgs *imgs, t_game *g)
 {
-	static int i;
+	static int	i;
 
-	usleep(10000); //justify usage
+	usleep(10000); // justify usage
 	mlx_put_image_to_window(display->mlx, display->win, imgs->blank.img, 0, 0);
 	ft_put_img(display, &imgs->wall, map, WALL);
 	ft_put_img(display, &imgs->floor, map, FLOOR);
 	ft_put_img(display, &imgs->obj, map, OBJ);
-	ft_put_img(display, &imgs->exit, map, EXIT);
-	ft_put_img(display, &imgs->player, map, PLAYER);
-	if (i++ < 30) //240
+	if (g->obj)
+		ft_put_img(display, &imgs->exit_closed, map, EXIT);
+	else
+		ft_put_img(display, &imgs->exit, map, EXIT);
+	if (!g->pos)
+		ft_put_img(display, &imgs->player, map, PLAYER);
+	else
+		ft_put_img(display, &imgs->player_2, map, PLAYER);
+	if (i++ < 30) // 240
 		ft_put_img(display, &imgs->trap_2, map, TRAP);
-	else if (i++ < 60) //480
+	else if (i++ < 60) // 480
 		ft_put_img(display, &imgs->trap_1, map, TRAP);
-	else if (i++ < 90) //720
+	else if (i++ < 90) // 720
 		ft_put_img(display, &imgs->trap, map, TRAP);
-	else if (i++ < 120) //960
+	else if (i++ < 120) // 960
 		ft_put_img(display, &imgs->trap_1, map, TRAP);
-	if (i >= 120) //960
+	if (i >= 120) // 960
 		i = 0;
 }
