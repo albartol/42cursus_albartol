@@ -20,12 +20,15 @@ static void	ft_move_up(t_game *game)
 		- 1][game->x] == OBJ)
 	{
 		if (game->map[game->y - 1][game->x] == OBJ)
+		{
+			game->map[game->y - 1][game->x] = FLOOR;
 			game->obj--;
-		game->map[game->y - 1][game->x] = PLAYER;
-		game->map[game->y][game->x] = FLOOR;
+		}
+		// game->map[game->y - 1][game->x] = PLAYER;
 		game->y--;
 		game->moves++;
 		game->pos = 1;
+		ft_print_moves(game->moves);
 	}
 	else if (game->map[game->y - 1][game->x] == TRAP || game->map[game->y
 		- 1][game->x] == EXIT)
@@ -46,12 +49,15 @@ static void	ft_move_down(t_game *game)
 		+ 1][game->x] == OBJ)
 	{
 		if (game->map[game->y + 1][game->x] == OBJ)
+		{
+			game->map[game->y + 1][game->x] = FLOOR;
 			game->obj--;
-		game->map[game->y + 1][game->x] = PLAYER;
-		game->map[game->y][game->x] = FLOOR;
+		}
+		// game->map[game->y + 1][game->x] = PLAYER;
 		game->y++;
 		game->moves++;
 		game->pos = 0;
+		ft_print_moves(game->moves);
 	}
 	else if (game->map[game->y + 1][game->x] == TRAP || game->map[game->y
 		+ 1][game->x] == EXIT)
@@ -72,12 +78,15 @@ static void	ft_move_left(t_game *game)
 		- 1] == OBJ)
 	{
 		if (game->map[game->y][game->x - 1] == OBJ)
+		{
+			game->map[game->y][game->x - 1] = FLOOR;
 			game->obj--;
-		game->map[game->y][game->x - 1] = PLAYER;
-		game->map[game->y][game->x] = FLOOR;
+		}
+		// game->map[game->y][game->x - 1] = PLAYER;
 		game->x--;
 		game->moves++;
 		game->pos = 2;
+		ft_print_moves(game->moves);
 	}
 	else if (game->map[game->y][game->x - 1] == TRAP
 		|| game->map[game->y][game->x - 1] == EXIT)
@@ -98,12 +107,15 @@ static void	ft_move_rigth(t_game *game)
 		+ 1] == OBJ)
 	{
 		if (game->map[game->y][game->x + 1] == OBJ)
+		{
+			game->map[game->y][game->x + 1] = FLOOR;
 			game->obj--;
-		game->map[game->y][game->x + 1] = PLAYER;
-		game->map[game->y][game->x] = FLOOR;
+		}
+		// game->map[game->y][game->x + 1] = PLAYER;
 		game->x++;
 		game->moves++;
 		game->pos = 3;
+		ft_print_moves(game->moves);
 	}
 	else if (game->map[game->y][game->x + 1] == TRAP
 		|| game->map[game->y][game->x + 1] == EXIT)

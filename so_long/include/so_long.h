@@ -25,7 +25,7 @@ typedef enum e_tiles
 	EXIT = 'E',
 	TRAP = 'T',
 	TILE_SIZE = 64,
-	FREE_SPACE = 30
+	FREE_SPACE = 32
 }				t_tiles;
 
 typedef enum e_keys
@@ -34,15 +34,16 @@ typedef enum e_keys
 	DOWN = 125,
 	RIGHT = 124,
 	LEFT = 123,
-	WSL_LEFT = 65361,
-	WSL_UP = 65362,
-	WSL_RIGTH = 65363,
-	WSL_DOWN = 65364,
 	W_UP = 13,
 	S_DOWN = 1,
 	D_RIGHT = 2,
 	A_LEFT = 0,
 	END = 53,
+	Q_END = 0,
+	WSL_LEFT = 65361,
+	WSL_UP = 65362,
+	WSL_RIGTH = 65363,
+	WSL_DOWN = 65364,
 	WSL_END = 65307
 }				t_keys;
 
@@ -94,13 +95,30 @@ typedef struct s_imgs
 	t_image		blank;
 }				t_imgs;
 
+typedef struct s_font
+{
+	t_image		num_0;
+	t_image		num_1;
+	t_image		num_2;
+	t_image		num_3;
+	t_image		num_4;
+	t_image		num_5;
+	t_image		num_6;
+	t_image		num_7;
+	t_image		num_8;
+	t_image		num_9;
+}				t_font;
+
 typedef struct s_game
 {
 	t_display	display;
 	t_imgs		imgs;
+	t_font		font;
 	char		**map;
 	int			y;
+	int			y_old;
 	int			x;
+	int			x_old;
 	int			moves;
 	int			obj;
 	int			pos;
@@ -124,19 +142,29 @@ void			ft_display(t_game *game);
 
 // ft_hooks
 
-void			ft_destroy_images(void *mlx, t_imgs imgs);
 int				ft_process_input(int keycode, t_game *game);
 int				ft_close(t_game *game);
 int				ft_render_frame(t_game *game);
 
-// ft_render_frame
+// ft_display_utils
 
-void			ft_str_init(t_display *display, int x, int y, char *str);
+void			ft_destroy_images(void *mlx, t_imgs imgs);
+void			ft_destroy_font(void *mlx, t_font font);
+void			ft_img_init(t_game *game, t_image *img, char *str);
 void			ft_put_img(t_display *display, t_image *img, char **map,
 					int tile);
-void			ft_put_images(char **map, t_display *display, t_imgs *imgs,
-					t_game *g);
-// void			ft_put_background(char **map, t_display *display, t_imgs *imgs);
+
+// ft_render_frame
+
+void			ft_put_images(t_display *display, t_imgs *imgs, t_game *game);
+void			ft_put_moves(t_game *game);
+
+// ft_render_frame_utils
+
+void			ft_anim_trap(t_display *display, t_imgs *imgs, char **map);
+void			ft_put_player(t_display *d, t_imgs *imgs, t_game *game);
+void			ft_put_floor(t_display *display, t_image *img, t_game *game);
+void		    ft_put_font_num(t_display *d, t_font *font, char c, int i);
 
 // ft_move_player
 
@@ -146,9 +174,10 @@ void			ft_move_player(int keycode, t_game *game);
 
 int				ft_count_collectibles(char **map);
 
-// so_long -> ft_end_game
+// so_long
 
 void			ft_end_game(t_game *game);
+void			ft_print_moves(int	moves);
 
 // so_long_utils: later move to libft
 

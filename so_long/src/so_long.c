@@ -41,19 +41,44 @@ static void	ft_get_player(t_game *game)
 		while (game->map[game->y][game->x])
 		{
 			if (game->map[game->y][game->x] == PLAYER)
+			{
+				game->x_old = game->x;
+				game->y_old = game->y;
 				return ;
+			}
 			game->x++;
 		}
 		game->y++;
 	}
 }
 
+void	ft_print_moves(int moves)
+{
+	char	*str;
+	char	*str2;
+
+	str = "-----------------------------\n";
+	str2 = "Numero de movimientos: ";
+	ft_printf("%s", str);
+	ft_printf("%s%d\n", str2, moves);
+	ft_printf("%s", str);
+}
+
+/* void	ft_end_game(t_game	*game)
+{
+	mlx_destroy_window(game->display.mlx, game->display.win);
+	ft_destroy_images(game->display.mlx, game->imgs);
+	ft_destroy_font(game->display.mlx, game->font);
+	mlx_destroy_display(game->display.mlx);
+	free(game->display.mlx);
+	ft_free_array(game->map);
+} */
+
 void	ft_end_game(t_game	*game)
 {
 	mlx_destroy_window(game->display.mlx, game->display.win);
 	ft_destroy_images(game->display.mlx, game->imgs);
-	// mlx_destroy_display(game->display.mlx);
-	// free(game->display.mlx);
+	ft_destroy_font(game->display.mlx, game->font);
 	ft_free_array(game->map);
 }
 
@@ -69,6 +94,7 @@ int	main(int argc, char **argv)
 	// ft_print_array(game.map);
 	ft_check_map(game.map);
 	ft_get_player(&game);
+	game.map[game.y][game.x] = FLOOR;
 	game.obj = ft_count_collectibles(game.map);
 	// ft_printf("y: %d x: %d obj:%d\n", game.y, game.x, game.obj);
 	ft_display(&game);

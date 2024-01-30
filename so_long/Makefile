@@ -24,7 +24,8 @@ CFLAGS:=-Wall -Wextra -Werror
 
 SRC=src/so_long.c src/ft_get_map.c src/so_long_utils.c src/ft_check_map.c \
 src/ft_check_map_utils.c src/ft_check_path.c src/ft_display.c \
-src/ft_render_frame.c src/ft_hooks.c src/ft_move_player.c
+src/ft_display_utils.c src/ft_render_frame.c src/ft_render_frame_utils.c \
+src/ft_hooks.c src/ft_move_player.c
 
 OBJ=$(SRC:%.c=%.o)
 

@@ -12,97 +12,51 @@
 
 #include "../include/so_long.h"
 
-void	ft_str_init(t_display *display, int x, int y, char *str)
+/* void	ft_put_images(t_display *display, t_imgs *imgs, t_game *game)
 {
-	mlx_string_put(display->mlx, display->win, x, y, 0x00FFFFFF, str);
-}
-
-void	ft_put_img(t_display *display, t_image *img, char **map, int tile)
-{
-	int	y;
-	int	x;
-
-	x = 0;
-	while (map[x])
-	{
-		y = 0;
-		while (map[x][y])
-		{
-			if (map[x][y] == tile)
-			{
-				mlx_put_image_to_window(display->mlx, display->win, img->img, y
-					* TILE_SIZE, x * TILE_SIZE + FREE_SPACE);
-			}
-			y++;
-		}
-		x++;
-	}
-}
-
-// void	ft_put_background(char **map, t_display *display, t_imgs *imgs)
-// {
-// 	int	x;
-// 	int	y;
-
-// 	y = 1;
-// 	while (map[y + 1])
-// 	{
-// 		x = 1;
-// 		while (map[y][x + 1])
-// 		{
-// 			mlx_put_image_to_window(display->mlx, display->win, imgs->floor.img,
-// 				x * TILE_SIZE, y * TILE_SIZE);
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// }
-
-static void	ft_anim_trap(t_display *display, t_imgs *imgs, char **map)
-{
-	static int	i;
-
-	if (i++ < 30) // 240
-		ft_put_img(display, &imgs->trap_2, map, TRAP);
-	else if (i++ < 60) // 480
-		ft_put_img(display, &imgs->trap_1, map, TRAP);
-	else if (i++ < 90) // 720
-		ft_put_img(display, &imgs->trap, map, TRAP);
-	else if (i++ < 120) // 960
-		ft_put_img(display, &imgs->trap_1, map, TRAP);
-	if (i >= 120) // 960
-		i = 0;
-}
-
-static void	ft_put_player(t_display *display, t_imgs *imgs, char **map, int pos)
-{
-	if (!pos)
-		ft_put_img(display, &imgs->player, map, PLAYER);
-	else if(pos == 1)
-		ft_put_img(display, &imgs->player_up, map, PLAYER);
-	else if(pos == 2)
-		ft_put_img(display, &imgs->player_left, map, PLAYER);
+	ft_put_img(display, &imgs->wall, game->map, WALL);
+	ft_put_img(display, &imgs->obj, game->map, OBJ);
+	ft_put_img(display, &imgs->floor, game->map, FLOOR);
+	if (game->obj)
+		ft_put_img(display, &imgs->exit_closed, game->map, EXIT);
 	else
-		ft_put_img(display, &imgs->player_right, map, PLAYER);
+		ft_put_img(display, &imgs->exit, game->map, EXIT);
+	ft_put_player(display, imgs, game);
+	ft_anim_trap(display, imgs, game->map);
+	mlx_put_image_to_window(display->mlx, display->win, imgs->blank.img, 0, 0);
+} */
+
+void	ft_put_images(t_display *display, t_imgs *imgs, t_game *game)
+{
+	if (game->obj == 0)
+	{
+		ft_put_img(display, &imgs->exit, game->map, EXIT);
+		game->obj = -1;
+	}
+	ft_put_player(display, imgs, game);
+	if (game->x != game->x_old || game->y != game->y_old)
+	{
+		ft_put_floor(display, &imgs->floor, game);
+		game->x_old = game->x;
+		game->y_old = game->y;
+	}
+	ft_anim_trap(display, imgs, game->map);
+	mlx_put_image_to_window(display->mlx, display->win, imgs->blank.img, 0, 0);
 }
 
-void	ft_put_images(char **map, t_display *display, t_imgs *imgs, t_game *g)
+void	ft_put_moves(t_game *game)
 {
+	char	*nbr;
+	int		len;
+	int		i;
 
-	// usleep(10000); // justify usage
-	mlx_put_image_to_window(display->mlx, display->win, imgs->blank.img, 0, 0);
-	// ft_put_img(display, &imgs->wall, map, WALL);
-	// ft_put_img(display, &imgs->obj, map, OBJ);
-	ft_put_img(display, &imgs->floor, map, FLOOR);
-	// if (!g->obj)
-	// 	ft_put_img(display, &imgs->exit_closed, map, EXIT);
-	// else
-	// 	ft_put_img(display, &imgs->exit, map, EXIT);
-	if (g->obj == 0)
+	nbr = ft_itoa(game->moves);
+	len = (int)ft_strlen(nbr);
+	i = 0;
+	while (i < len)
 	{
-		ft_put_img(display, &imgs->exit, map, EXIT);
-		g->obj = -1;
+		ft_put_font_num(&game->display, &game->font, nbr[i], i + 1);
+		i++;
 	}
-	ft_put_player(display, imgs, map, g->pos);
-	ft_anim_trap(display, imgs, map);
+	free(nbr);
 }
