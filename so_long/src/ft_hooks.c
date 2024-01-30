@@ -20,12 +20,12 @@ void	ft_destroy_images(void *mlx, t_imgs imgs)
 		mlx_destroy_image(mlx, imgs.wall.img);
 	if (imgs.player.img)
 		mlx_destroy_image(mlx, imgs.player.img);
-	if (imgs.player_1.img)
-		mlx_destroy_image(mlx, imgs.player_1.img);
-	if (imgs.player_2.img)
-		mlx_destroy_image(mlx, imgs.player_2.img);
-	if (imgs.player_3.img)
-		mlx_destroy_image(mlx, imgs.player_3.img);
+	if (imgs.player_up.img)
+		mlx_destroy_image(mlx, imgs.player_up.img);
+	if (imgs.player_left.img)
+		mlx_destroy_image(mlx, imgs.player_left.img);
+	if (imgs.player_right.img)
+		mlx_destroy_image(mlx, imgs.player_right.img);
 	if (imgs.trap.img)
 		mlx_destroy_image(mlx, imgs.trap.img);
 	if (imgs.trap_1.img)

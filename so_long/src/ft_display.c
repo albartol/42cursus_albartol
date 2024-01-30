@@ -66,11 +66,11 @@ static void	ft_images_init(t_game *game)
 	ft_img_init(game, &game->imgs.floor, "./textures/floor.xpm");
 	ft_img_init(game, &game->imgs.obj, "./textures/egg.xpm");
 	ft_img_init(game, &game->imgs.exit, "./textures/exit.xpm");
-	ft_img_init(game, &game->imgs.exit_closed, "./textures/exit_2.xpm");
-	ft_img_init(game, &game->imgs.player, "./textures/rabbit.xpm");
-	ft_img_init(game, &game->imgs.player_1, "./textures/rabbit_2.xpm");
-	ft_img_init(game, &game->imgs.player_2, "./textures/rabbit_left.xpm");
-	ft_img_init(game, &game->imgs.player_3, "./textures/rabbit_left_2.xpm");
+	ft_img_init(game, &game->imgs.exit_closed, "./textures/exit_closed.xpm");
+	ft_img_init(game, &game->imgs.player, "./textures/rabbit_3.xpm");
+	ft_img_init(game, &game->imgs.player_up, "./textures/rabbit_2.xpm");
+	ft_img_init(game, &game->imgs.player_left, "./textures/rabbit.xpm");
+	ft_img_init(game, &game->imgs.player_right, "./textures/rabbit_1.xpm");
 	ft_img_init(game, &game->imgs.trap, "./textures/trap.xpm");
 	ft_img_init(game, &game->imgs.trap_1, "./textures/trap_2.xpm");
 	ft_img_init(game, &game->imgs.trap_2, "./textures/trap_3.xpm");
@@ -89,4 +89,7 @@ void	ft_display(t_game *game)
 		ft_end_game(game);
 		ft_perror("Error\nFallo en mlx_new_image\n");
 	}
+	ft_put_img(&game->display, &game->imgs.wall, game->map, WALL);
+	ft_put_img(&game->display, &game->imgs.obj, game->map, OBJ);
+	ft_put_img(&game->display, &game->imgs.exit_closed, game->map, EXIT);
 }

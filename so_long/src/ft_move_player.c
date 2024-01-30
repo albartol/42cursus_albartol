@@ -25,11 +25,12 @@ static void	ft_move_up(t_game *game)
 		game->map[game->y][game->x] = FLOOR;
 		game->y--;
 		game->moves++;
+		game->pos = 1;
 	}
 	else if (game->map[game->y - 1][game->x] == TRAP || game->map[game->y
 		- 1][game->x] == EXIT)
 	{
-		if (game->map[game->y - 1][game->x] == EXIT && game->obj)
+		if (game->map[game->y - 1][game->x] == EXIT && game->obj > 0)
 			return ;
 		// mlx_loop_end(game->display.mlx);
 		ft_end_game(game);
@@ -50,11 +51,12 @@ static void	ft_move_down(t_game *game)
 		game->map[game->y][game->x] = FLOOR;
 		game->y++;
 		game->moves++;
+		game->pos = 0;
 	}
 	else if (game->map[game->y + 1][game->x] == TRAP || game->map[game->y
 		+ 1][game->x] == EXIT)
 	{
-		if (game->map[game->y + 1][game->x] == EXIT && game->obj)
+		if (game->map[game->y + 1][game->x] == EXIT && game->obj > 0)
 			return ;
 		// mlx_loop_end(game->display.mlx);
 		ft_end_game(game);
@@ -75,12 +77,12 @@ static void	ft_move_left(t_game *game)
 		game->map[game->y][game->x] = FLOOR;
 		game->x--;
 		game->moves++;
-		game->pos = 0;
+		game->pos = 2;
 	}
 	else if (game->map[game->y][game->x - 1] == TRAP
 		|| game->map[game->y][game->x - 1] == EXIT)
 	{
-		if (game->map[game->y][game->x - 1] == EXIT && game->obj)
+		if (game->map[game->y][game->x - 1] == EXIT && game->obj > 0)
 			return ;
 		// mlx_loop_end(game->display.mlx);
 		ft_end_game(game);
@@ -101,12 +103,12 @@ static void	ft_move_rigth(t_game *game)
 		game->map[game->y][game->x] = FLOOR;
 		game->x++;
 		game->moves++;
-		game->pos = 1;
+		game->pos = 3;
 	}
 	else if (game->map[game->y][game->x + 1] == TRAP
 		|| game->map[game->y][game->x + 1] == EXIT)
 	{
-		if (game->map[game->y][game->x + 1] == EXIT && game->obj)
+		if (game->map[game->y][game->x + 1] == EXIT && game->obj > 0)
 			return ;
 		// mlx_loop_end(game->display.mlx);
 		ft_end_game(game);

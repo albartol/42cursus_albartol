@@ -79,12 +79,15 @@ typedef struct s_imgs
 	t_image		wall;
 	t_image		floor;
 	t_image		obj;
+	t_image		obj_1;
+	t_image		obj_2;
+	t_image		obj_3;
 	t_image		exit;
 	t_image		exit_closed;
 	t_image		player;
-	t_image		player_1;
-	t_image		player_2;
-	t_image		player_3;
+	t_image		player_up;
+	t_image		player_left;
+	t_image		player_right;
 	t_image		trap;
 	t_image		trap_1;
 	t_image		trap_2;

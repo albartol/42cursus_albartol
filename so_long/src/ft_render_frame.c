@@ -58,23 +58,10 @@ void	ft_put_img(t_display *display, t_image *img, char **map, int tile)
 // 	}
 // }
 
-void	ft_put_images(char **map, t_display *display, t_imgs *imgs, t_game *g)
+static void	ft_anim_trap(t_display *display, t_imgs *imgs, char **map)
 {
 	static int	i;
 
-	// usleep(10000); // justify usage
-	mlx_put_image_to_window(display->mlx, display->win, imgs->blank.img, 0, 0);
-	ft_put_img(display, &imgs->wall, map, WALL);
-	ft_put_img(display, &imgs->floor, map, FLOOR);
-	ft_put_img(display, &imgs->obj, map, OBJ);
-	if (g->obj)
-		ft_put_img(display, &imgs->exit_closed, map, EXIT);
-	else
-		ft_put_img(display, &imgs->exit, map, EXIT);
-	if (!g->pos)
-		ft_put_img(display, &imgs->player, map, PLAYER);
-	else
-		ft_put_img(display, &imgs->player_2, map, PLAYER);
 	if (i++ < 30) // 240
 		ft_put_img(display, &imgs->trap_2, map, TRAP);
 	else if (i++ < 60) // 480
@@ -85,4 +72,37 @@ void	ft_put_images(char **map, t_display *display, t_imgs *imgs, t_game *g)
 		ft_put_img(display, &imgs->trap_1, map, TRAP);
 	if (i >= 120) // 960
 		i = 0;
+}
+
+static void	ft_put_player(t_display *display, t_imgs *imgs, char **map, int pos)
+{
+	if (!pos)
+		ft_put_img(display, &imgs->player, map, PLAYER);
+	else if(pos == 1)
+		ft_put_img(display, &imgs->player_up, map, PLAYER);
+	else if(pos == 2)
+		ft_put_img(display, &imgs->player_left, map, PLAYER);
+	else
+		ft_put_img(display, &imgs->player_right, map, PLAYER);
+}
+
+void	ft_put_images(char **map, t_display *display, t_imgs *imgs, t_game *g)
+{
+
+	// usleep(10000); // justify usage
+	mlx_put_image_to_window(display->mlx, display->win, imgs->blank.img, 0, 0);
+	// ft_put_img(display, &imgs->wall, map, WALL);
+	// ft_put_img(display, &imgs->obj, map, OBJ);
+	ft_put_img(display, &imgs->floor, map, FLOOR);
+	// if (!g->obj)
+	// 	ft_put_img(display, &imgs->exit_closed, map, EXIT);
+	// else
+	// 	ft_put_img(display, &imgs->exit, map, EXIT);
+	if (g->obj == 0)
+	{
+		ft_put_img(display, &imgs->exit, map, EXIT);
+		g->obj = -1;
+	}
+	ft_put_player(display, imgs, map, g->pos);
+	ft_anim_trap(display, imgs, map);
 }
