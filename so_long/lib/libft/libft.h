@@ -100,8 +100,8 @@ int					ft_putptr_n(unsigned long ptr);
 
 // push_swap
 
-void	ft_quick_sort(int *list, int start, int len);
-void	ft_merge_sort(int *list, int i, int *list_temp);
+void				ft_quick_sort(int *list, int start, int len);
+void				ft_merge_sort(int *list, int i, int *list_temp);
 
 // minitalk
 

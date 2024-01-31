@@ -12,7 +12,59 @@
 
 #include "../include/so_long.h"
 
-static void	ft_move_up(t_game *game)
+static void	ft_move(t_game *game, int h, int v)
+{
+	if (game->map[game->y + v][game->x + h] == WALL)
+		return ;
+	if (game->map[game->y + v][game->x + h] == FLOOR || \
+		game->map[game->y + v][game->x + h] == OBJ)
+	{
+		if (game->map[game->y + v][game->x + h] == OBJ)
+		{
+			game->map[game->y + v][game->x + h] = FLOOR;
+			game->obj--;
+		}
+		game->x += h;
+		game->y += v;
+		game->moves++;
+		ft_print_moves(game->moves);
+	}
+	else if (game->map[game->y + v][game->x + h] == TRAP
+		|| game->map[game->y + v][game->x + h] == EXIT)
+	{
+		if (game->map[game->y + v][game->x + h] == EXIT && game->obj > 0)
+			return ;
+		ft_last_message(game->map[game->y + v][game->x + h], game->moves);
+		ft_end_game(game);
+		exit(EXIT_SUCCESS);
+	}
+}
+
+void	ft_move_player(int keycode, t_game *game)
+{
+	if (keycode == UP || keycode == WSL_UP)
+	{
+		ft_move(game, 0, -1);
+		game->pos = 1;
+	}
+	else if (keycode == DOWN || keycode == WSL_DOWN)
+	{
+		ft_move(game, 0, 1);
+		game->pos = 0;
+	}
+	else if (keycode == LEFT || keycode == WSL_LEFT)
+	{
+		ft_move(game, -1, 0);
+		game->pos = 2;
+	}
+	else if (keycode == RIGHT || keycode == WSL_RIGTH)
+	{
+		ft_move(game, 1, 0);
+		game->pos = 3;
+	}
+}
+
+/* static void	ft_move_up(t_game *game)
 {
 	if (game->map[game->y - 1][game->x] == WALL)
 		return ;
@@ -134,7 +186,7 @@ void	ft_move_player(int keycode, t_game *game)
 		ft_move_left(game);
 	else if (keycode == RIGHT || keycode == WSL_RIGTH)
 		ft_move_rigth(game);
-}
+} */
 
 /* static void	ft_move_up(t_game *game)
 {

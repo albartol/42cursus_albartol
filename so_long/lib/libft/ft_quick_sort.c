@@ -25,15 +25,15 @@ static int	ft_quick_split(int *list, int start, int len)
 	while (1)
 	{
 		while (list[i] < pivot)
-            i++;
+			i++;
 		while (list[j] > pivot)
-            j--;
+			j--;
 		if (i >= j)
-            return (j);
-        temp = list[i];
-        list[i] = list[j];
-        list[j] = temp;
-    }
+			return (j);
+		temp = list[i];
+		list[i] = list[j];
+		list[j] = temp;
+	}
 }
 
 void	ft_quick_sort(int *list, int start, int len)

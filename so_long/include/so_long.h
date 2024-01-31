@@ -164,7 +164,7 @@ void			ft_put_moves(t_game *game);
 void			ft_anim_trap(t_display *display, t_imgs *imgs, char **map);
 void			ft_put_player(t_display *d, t_imgs *imgs, t_game *game);
 void			ft_put_floor(t_display *display, t_image *img, t_game *game);
-void		    ft_put_font_num(t_display *d, t_font *font, char c, int i);
+void			ft_put_font_num(t_display *d, t_font *font, char c, int i);
 
 // ft_move_player
 
@@ -177,8 +177,8 @@ int				ft_count_collectibles(char **map);
 // so_long
 
 void			ft_end_game(t_game *game);
-void			ft_print_moves(int	moves);
-void			ft_last_message(char c, int	moves);
+void			ft_print_moves(int moves);
+void			ft_last_message(char c, int moves);
 
 // so_long_utils: later move to libft
 
