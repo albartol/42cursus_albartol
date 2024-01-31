@@ -33,15 +33,17 @@ void	ft_put_images(t_display *display, t_imgs *imgs, t_game *game)
 		ft_put_img(display, &imgs->exit, game->map, EXIT);
 		game->obj = -1;
 	}
-	ft_put_player(display, imgs, game);
 	if (game->x != game->x_old || game->y != game->y_old)
 	{
+		ft_put_player(display, imgs, game);
 		ft_put_floor(display, &imgs->floor, game);
 		game->x_old = game->x;
 		game->y_old = game->y;
+		mlx_put_image_to_window(display->mlx, display->win, imgs->blank.img, \
+		0, 0);
+		ft_put_moves(game);
 	}
 	ft_anim_trap(display, imgs, game->map);
-	mlx_put_image_to_window(display->mlx, display->win, imgs->blank.img, 0, 0);
 }
 
 void	ft_put_moves(t_game *game)

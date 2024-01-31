@@ -28,18 +28,18 @@
 	}
 } */
 
-/* static void	ft_win_init(char **map, t_display *display, int *x_len, int *y_len)
+/* static void	ft_win_init(char **map, t_display *display, int *x, int *y)
 {
-	*x_len = ft_strlen(*map) * TILE_SIZE;
-	*y_len = ft_array_len(map) * TILE_SIZE + FREE_SPACE;
+	*x = ft_strlen(*map) * TILE_SIZE;
+	*y = ft_array_len(map) * TILE_SIZE + FREE_SPACE;
 	display->mlx = mlx_init();
 	if (!display->mlx)
 	{
 		ft_free_array(map);
 		ft_perror("Error\nFallo en mlx_init\n");
 	}
-	ft_check_screen(display->mlx, *x_len, *y_len, map);
-	display->win = mlx_new_window(display->mlx, *x_len, *y_len, "so_long");
+	ft_check_screen(display->mlx, *x, *y, map);
+	display->win = mlx_new_window(display->mlx, *x, *y, "so_long");
 	if (!display->win)
 	{
 		mlx_destroy_display(display->mlx);
@@ -115,4 +115,6 @@ void	ft_display(t_game *game)
 	ft_put_img(&game->display, &game->imgs.obj, game->map, OBJ);
 	ft_put_img(&game->display, &game->imgs.exit_closed, game->map, EXIT);
 	ft_put_img(&game->display, &game->imgs.floor, game->map, FLOOR);
+	ft_put_player(&game->display, &game->imgs, game);
+	ft_put_moves(game);
 }

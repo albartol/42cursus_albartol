@@ -178,6 +178,7 @@ int				ft_count_collectibles(char **map);
 
 void			ft_end_game(t_game *game);
 void			ft_print_moves(int	moves);
+void			ft_last_message(char c, int	moves);
 
 // so_long_utils: later move to libft
 

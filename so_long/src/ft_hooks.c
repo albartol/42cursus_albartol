@@ -45,9 +45,15 @@ int	ft_close(t_game *game)
 	return (0);
 }
 
-int	ft_render_frame(t_game *game)
+/* int	ft_render_frame(t_game *game)
 {
 	ft_put_images(&game->display, &game->imgs, game);
 	ft_put_moves(game);
+	return (0);
+} */
+
+int	ft_render_frame(t_game *game)
+{
+	ft_put_images(&game->display, &game->imgs, game);
 	return (0);
 }

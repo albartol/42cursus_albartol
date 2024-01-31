@@ -12,25 +12,25 @@
 
 #include "../include/so_long.h"
 
-// void	ft_print_array(char **map)
-// {
-// 	int	i;
+/* void	ft_print_array(char **map)
+{
+	int	i;
 
-// 	i = 0;
-// 	while (map[i])
-// 	{
-// 		ft_printf("%s\n", map[i]);
-// 		i++;
-// 	}
-// }
+	i = 0;
+	while (map[i])
+	{
+		ft_printf("%s\n", map[i]);
+		i++;
+	}
+} */
 
-// void	ft_leaks(void)
-// {
-// 	int	i;
+/* void	ft_leaks(void)
+{
+	int	i;
 
-// 	i = system("leaks so_long");
-// 	(void)i;
-// }
+	i = system("leaks so_long");
+	(void)i;
+} */
 
 static void	ft_get_player(t_game *game)
 {
@@ -64,6 +64,22 @@ void	ft_print_moves(int moves)
 	ft_printf("%s", str);
 }
 
+void	ft_last_message(char c, int moves)
+{
+	char	*str;
+	char	*str2;
+
+	ft_print_moves(moves + 1);
+	str = "-----------------------------\n";
+	if (c == EXIT)
+		str2 = "|          YOU WIN          |\n";
+	else
+		str2 = "|          YOU LOSE         |\n";
+	ft_printf("%s", str);
+	ft_printf("%s", str2);
+	ft_printf("%s", str);
+}
+
 /* void	ft_end_game(t_game	*game)
 {
 	mlx_destroy_window(game->display.mlx, game->display.win);
@@ -86,6 +102,27 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
+	if (argc != 2)
+		return (EXIT_FAILURE);
+	game.map = ft_get_map(argv[1]);
+	ft_check_map(game.map);
+	ft_get_player(&game);
+	game.map[game.y][game.x] = FLOOR;
+	game.obj = ft_count_collectibles(game.map);
+	game.moves = 0;
+	ft_display(&game);
+	mlx_hook(game.display.win, ON_KEYDOWN, (1L << 0), ft_process_input, &game);
+	mlx_hook(game.display.win, ON_DESTROY, 0, ft_close, &game);
+	mlx_loop_hook(game.display.mlx, ft_render_frame, &game);
+	mlx_loop(game.display.mlx);
+	ft_end_game(&game);
+	return (EXIT_SUCCESS);
+}
+
+/* int	main(int argc, char **argv)
+{
+	t_game	game;
+
 	// atexit(ft_leaks);
 	if (argc != 2)
 		return (EXIT_FAILURE);
@@ -104,4 +141,4 @@ int	main(int argc, char **argv)
 	mlx_loop(game.display.mlx);
 	ft_end_game(&game);
 	return (EXIT_SUCCESS);
-}
+} */
