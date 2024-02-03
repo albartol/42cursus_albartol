@@ -96,3 +96,29 @@ void	ft_destroy_font(void *mlx, t_font font)
 	if (font.num_9.img)
 		mlx_destroy_image(mlx, font.num_9.img);
 }
+
+void	ft_img_null(t_imgs *imgs, t_font *font)
+{
+	font->num_0.img = NULL;
+	font->num_1.img = NULL;
+	font->num_2.img = NULL;
+	font->num_3.img = NULL;
+	font->num_4.img = NULL;
+	font->num_5.img = NULL;
+	font->num_6.img = NULL;
+	font->num_7.img = NULL;
+	font->num_8.img = NULL;
+	font->num_9.img = NULL;
+	imgs->exit.img = NULL;
+	imgs->wall.img = NULL;
+	imgs->player.img = NULL;
+	imgs->player_up.img = NULL;
+	imgs->player_left.img = NULL;
+	imgs->player_right.img = NULL;
+	imgs->trap.img = NULL;
+	imgs->trap_1.img = NULL;
+	imgs->trap_2.img = NULL;
+	imgs->floor.img = NULL;
+	imgs->obj.img = NULL;
+	imgs->blank.img = NULL;
+}

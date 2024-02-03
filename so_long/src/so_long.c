@@ -110,6 +110,7 @@ int	main(int argc, char **argv)
 	game.map[game.y][game.x] = FLOOR;
 	game.obj = ft_count_collectibles(game.map);
 	game.moves = 0;
+	game.pos = 0;
 	ft_display(&game);
 	mlx_hook(game.display.win, ON_KEYDOWN, (1L << 0), ft_process_input, &game);
 	mlx_hook(game.display.win, ON_DESTROY, 0, ft_close, &game);

@@ -148,6 +148,7 @@ int				ft_render_frame(t_game *game);
 
 // ft_display_utils
 
+void			ft_img_null(t_imgs *imgs, t_font *font);
 void			ft_destroy_images(void *mlx, t_imgs imgs);
 void			ft_destroy_font(void *mlx, t_font font);
 void			ft_img_init(t_game *game, t_image *img, char *str);

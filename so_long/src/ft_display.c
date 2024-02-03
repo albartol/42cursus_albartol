@@ -101,6 +101,7 @@ void	ft_display(t_game *game)
 {
 	int	x;
 
+	ft_img_null(&game->imgs, &game->font);
 	ft_win_init(game->map, &game->display, &game->width, &game->height);
 	ft_images_init(game);
 	x = game->width;
