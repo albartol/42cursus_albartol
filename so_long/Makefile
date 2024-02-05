@@ -11,8 +11,8 @@
 # **************************************************************************** #
 
 UNAME := $(shell uname)
-MLX=-Lmlx -lmlx -L/usr/lib -Imlx -lXext -lX11
-# MLX_I=-I/usr/include -Imlx
+MLX=-Lmlx -lmlx -L/usr/local/lib -Imlx -lXext -lX11
+# MLX_I=-I/usr/local/include -Imlx
 ifeq ($(UNAME), Darwin)
     MLX=-lmlx -framework OpenGL -framework AppKit
     # MLX_I=-Imlx
